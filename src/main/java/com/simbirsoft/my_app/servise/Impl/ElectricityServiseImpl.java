@@ -1,13 +1,15 @@
-package com.simbirsoft.my_app.servise;
+package com.simbirsoft.my_app.servise.Impl;
 
 import com.simbirsoft.my_app.dto.ElectricityDto;
+import com.simbirsoft.my_app.dto.RateDto;
 import com.simbirsoft.my_app.model.Electricity;
 import com.simbirsoft.my_app.repository.ElectricityRepository;
+import com.simbirsoft.my_app.servise.ElectricityServise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ElectricityServiseImpl implements ElectricityServise{
+public class ElectricityServiseImpl implements ElectricityServise {
 
     @Autowired
     private ElectricityRepository electricityRepository;
@@ -18,11 +20,11 @@ public class ElectricityServiseImpl implements ElectricityServise{
     }
 
     @Override
-        public void save(ElectricityDto electDto) {
+        public void save(ElectricityDto electDto, RateDto rateDto) {
         Electricity elect = new Electricity();
         elect.setDate(electDto.getDate());
         elect.setCounter(electDto.getCounter());
-        elect.setScore(electDto.getScore());
+        elect.setScore(electDto.getCounter() * rateDto.getRateE());
         electricityRepository.save(elect);
 
     }

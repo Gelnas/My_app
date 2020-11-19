@@ -11,19 +11,50 @@ public class Expense {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    //месяц
     @Column(name = "date")
     private Calendar date;
 
-    @Column(name = "score_hot")
-    private Double scoreHot;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "water_id", referencedColumnName = "id")
+    private WaterSupply scoreWater;
 
-    @Column(name = "score_cold")
-    private Double scoreCold;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "elect_id", referencedColumnName = "id")
+    private Electricity scoreElect;
 
-    @Column(name = "score_water")
-    private Double scoreWater;
+   public Long getId() {
+        return id;
+    }
 
-    @Column(name = "score_elect")
-    private Double scoreElect;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Calendar getDate() {
+        return date;
+    }
+
+    public void setDate(Calendar date) {
+        this.date = date;
+    }
+
+    public WaterSupply getScoreWater() {
+        return scoreWater;
+    }
+
+    public void setScoreWater(WaterSupply scoreWater) {
+        this.scoreWater = scoreWater;
+    }
+
+    public Electricity getScoreElect() {
+        return scoreElect;
+    }
+
+    public void setScoreElect(Electricity scoreElect) {
+        this.scoreElect = scoreElect;
+    }
+
+
 
 }
