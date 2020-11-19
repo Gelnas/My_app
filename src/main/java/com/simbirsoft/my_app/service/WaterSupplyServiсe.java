@@ -1,12 +1,10 @@
-package com.simbirsoft.my_app.servise;
+package com.simbirsoft.my_app.service;
 
-import com.simbirsoft.my_app.dto.ElectricityDto;
 import com.simbirsoft.my_app.dto.RateDto;
 import com.simbirsoft.my_app.dto.WaterSupplyDto;
-import com.simbirsoft.my_app.model.Electricity;
 import com.simbirsoft.my_app.model.WaterSupply;
 
-public interface WaterSupplyServise {
+public interface WaterSupplyServiсe {
 
     WaterSupply getById(Long id);
     void save(WaterSupplyDto waterSupplyDto, RateDto rateDto);

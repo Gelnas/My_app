@@ -1,16 +1,15 @@
-package com.simbirsoft.my_app.servise.Impl;
+package com.simbirsoft.my_app.service.Impl;
 
 import com.simbirsoft.my_app.dto.RateDto;
 import com.simbirsoft.my_app.dto.WaterSupplyDto;
-import com.simbirsoft.my_app.model.Rate;
 import com.simbirsoft.my_app.model.WaterSupply;
 import com.simbirsoft.my_app.repository.WaterSupplyRepository;
-import com.simbirsoft.my_app.servise.WaterSupplyServise;
+import com.simbirsoft.my_app.service.WaterSupplyServiсe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class WaterSupplyServiseImpl implements WaterSupplyServise {
+public class WaterSupplyServiсeImpl implements WaterSupplyServiсe {
 
     @Autowired
     private WaterSupplyRepository waterSupplyRepository;

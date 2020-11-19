@@ -1,15 +1,15 @@
-package com.simbirsoft.my_app.servise.Impl;
+package com.simbirsoft.my_app.service.Impl;
 
 import com.simbirsoft.my_app.dto.ElectricityDto;
 import com.simbirsoft.my_app.dto.RateDto;
 import com.simbirsoft.my_app.model.Electricity;
 import com.simbirsoft.my_app.repository.ElectricityRepository;
-import com.simbirsoft.my_app.servise.ElectricityServise;
+import com.simbirsoft.my_app.service.ElectricityServiсe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ElectricityServiseImpl implements ElectricityServise {
+public class ElectricityServiсeImpl implements ElectricityServiсe {
 
     @Autowired
     private ElectricityRepository electricityRepository;

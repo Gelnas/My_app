@@ -3,7 +3,7 @@ package com.simbirsoft.my_app.controller;
 import com.simbirsoft.my_app.dto.ElectricityDto;
 import com.simbirsoft.my_app.dto.RateDto;
 import com.simbirsoft.my_app.model.Electricity;
-import com.simbirsoft.my_app.servise.ElectricityServise;
+import com.simbirsoft.my_app.service.ElectricityServiсe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class ElectricityController {
 
     @Autowired
-    private ElectricityServise electricityServise;
+    private ElectricityServiсe electricityServiсe;
 
     @GetMapping("/{id}")
     public ResponseEntity<Electricity> getById(@PathVariable("id") Long id){
@@ -25,7 +25,7 @@ public class ElectricityController {
             return ResponseEntity.badRequest().build();
         }
 
-        Electricity electricity = electricityServise.getById(id);
+        Electricity electricity = electricityServiсe.getById(id);
         if (electricity.equals(null)){
             return ResponseEntity.noContent().build();
         }
@@ -39,7 +39,7 @@ public class ElectricityController {
             return ResponseEntity.badRequest().build();
         }
 
-        electricityServise.save(electricityDto, rateDto);
+        electricityServiсe.save(electricityDto, rateDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -49,12 +49,12 @@ public class ElectricityController {
             return ResponseEntity.badRequest().build();
         }
 
-        Electricity electricity = electricityServise.getById(id);
+        Electricity electricity = electricityServiсe.getById(id);
          if(electricity.equals(null)){
              return ResponseEntity.notFound().build();
          }
 
-         electricityServise.delete(id);
+         electricityServiсe.delete(id);
          return ResponseEntity.ok().build();
     }
 

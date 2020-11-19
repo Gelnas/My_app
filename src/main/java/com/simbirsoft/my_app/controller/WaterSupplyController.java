@@ -3,7 +3,7 @@ package com.simbirsoft.my_app.controller;
 import com.simbirsoft.my_app.dto.RateDto;
 import com.simbirsoft.my_app.dto.WaterSupplyDto;
 import com.simbirsoft.my_app.model.WaterSupply;
-import com.simbirsoft.my_app.servise.WaterSupplyServise;
+import com.simbirsoft.my_app.service.WaterSupplyServiсe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class WaterSupplyController {
 
     @Autowired
-    private WaterSupplyServise waterSupplyServise;
+    private WaterSupplyServiсe waterSupplyServiсe;
 
     @GetMapping("/{id}")
     public ResponseEntity<WaterSupply> getById(@PathVariable("id") Long id){
@@ -23,7 +23,7 @@ public class WaterSupplyController {
             return ResponseEntity.badRequest().build();
         }
 
-        WaterSupply waterSupply = waterSupplyServise.getById(id);
+        WaterSupply waterSupply = waterSupplyServiсe.getById(id);
         if (waterSupply.equals(null)){
             return ResponseEntity.noContent().build();
         }
@@ -37,7 +37,7 @@ public class WaterSupplyController {
             return ResponseEntity.badRequest().build();
         }
 
-        waterSupplyServise.save(waterSupplyDto, rateDto);
+        waterSupplyServiсe.save(waterSupplyDto, rateDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -47,12 +47,12 @@ public class WaterSupplyController {
             return ResponseEntity.badRequest().build();
         }
 
-        WaterSupply waterSupply = waterSupplyServise.getById(id);
+        WaterSupply waterSupply = waterSupplyServiсe.getById(id);
         if(waterSupply.equals(null)){
             return ResponseEntity.notFound().build();
         }
 
-        waterSupplyServise.delete(id);
+        waterSupplyServiсe.delete(id);
         return ResponseEntity.ok().build();
     }
 

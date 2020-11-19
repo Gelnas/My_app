@@ -1,12 +1,8 @@
 package com.simbirsoft.my_app.controller;
 
 import com.simbirsoft.my_app.dto.ExpenseDto;
-import com.simbirsoft.my_app.dto.RateDto;
-import com.simbirsoft.my_app.dto.WaterSupplyDto;
 import com.simbirsoft.my_app.model.Expense;
-import com.simbirsoft.my_app.model.WaterSupply;
-import com.simbirsoft.my_app.servise.ExpenseServise;
-import com.simbirsoft.my_app.servise.WaterSupplyServise;
+import com.simbirsoft.my_app.service.ExpenseServiсe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class ExpenseController {
 
     @Autowired
-    private ExpenseServise expenseServise;
+    private ExpenseServiсe expenseServise;
 
     @GetMapping("/{id}")
     public ResponseEntity<Expense> getById(@PathVariable("id") Long id){

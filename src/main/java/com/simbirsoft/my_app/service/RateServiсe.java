@@ -1,11 +1,9 @@
-package com.simbirsoft.my_app.servise;
+package com.simbirsoft.my_app.service;
 
-import com.simbirsoft.my_app.dto.ElectricityDto;
 import com.simbirsoft.my_app.dto.RateDto;
-import com.simbirsoft.my_app.model.Electricity;
 import com.simbirsoft.my_app.model.Rate;
 
-public interface RateServise {
+public interface RateServiсe {
 
     Rate getById(Long id);
     void save(RateDto rateDto);
