@@ -4,12 +4,13 @@ import com.simbirsoft.my_app.dto.ElectricityDto;
 import com.simbirsoft.my_app.dto.RateDto;
 import com.simbirsoft.my_app.model.Electricity;
 import com.simbirsoft.my_app.service.ElectricityServiсe;
+import org.hibernate.query.criteria.internal.predicate.IsEmptyPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-//import static org.apache.commons.lang3.ObjectUtils.isEmpty;
+import static org.springframework.util.ObjectUtils.isEmpty;
 
 @RestController
 @RequestMapping("/api/v1/electricity")
@@ -21,21 +22,20 @@ public class ElectricityController {
     @GetMapping("/{id}")
     public ResponseEntity<Electricity> getById(@PathVariable("id") Long id){
 
-        if(id == null){
+        if(isEmpty(id)){
             return ResponseEntity.badRequest().build();
         }
 
         Electricity electricity = electricityServiсe.getById(id);
-        if (electricity.equals(null)){
+        if (isEmpty(electricity)){
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(electricity);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> addElectData(@RequestBody ElectricityDto electricityDto){
-        RateDto rateDto = new RateDto();
-        if(electricityDto.equals(null)){
+    public ResponseEntity<String> addElectData(@RequestBody ElectricityDto electricityDto, RateDto rateDto){
+        if(isEmpty(electricityDto)|| isEmpty(rateDto)){
             return ResponseEntity.badRequest().build();
         }
 
@@ -45,12 +45,12 @@ public class ElectricityController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
-        if(id == null){
+        if(isEmpty(id)){
             return ResponseEntity.badRequest().build();
         }
 
         Electricity electricity = electricityServiсe.getById(id);
-         if(electricity.equals(null)){
+         if(isEmpty(electricity)){
              return ResponseEntity.notFound().build();
          }
 

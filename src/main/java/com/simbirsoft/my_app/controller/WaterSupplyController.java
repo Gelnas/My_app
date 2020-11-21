@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import static org.springframework.util.ObjectUtils.isEmpty;
 
 @RestController
 @RequestMapping("/api/v1/waterSupply")
@@ -19,21 +20,21 @@ public class WaterSupplyController {
     @GetMapping("/{id}")
     public ResponseEntity<WaterSupply> getById(@PathVariable("id") Long id){
 
-        if(id == null){
+        if(isEmpty(id)){
             return ResponseEntity.badRequest().build();
         }
 
         WaterSupply waterSupply = waterSupplyServiсe.getById(id);
-        if (waterSupply.equals(null)){
+        if (isEmpty(waterSupply)){
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(waterSupply);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> addElectData(@RequestBody WaterSupplyDto waterSupplyDto){
-        RateDto rateDto = new RateDto();
-        if(waterSupplyDto.equals(null)){
+    public ResponseEntity<String> addElectData(@RequestBody WaterSupplyDto waterSupplyDto, RateDto rateDto){
+
+        if(isEmpty(waterSupplyDto) || isEmpty(rateDto)){
             return ResponseEntity.badRequest().build();
         }
 
@@ -43,12 +44,12 @@ public class WaterSupplyController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
-        if(id == null){
+        if(isEmpty(id)){
             return ResponseEntity.badRequest().build();
         }
 
         WaterSupply waterSupply = waterSupplyServiсe.getById(id);
-        if(waterSupply.equals(null)){
+        if(isEmpty(waterSupply)){
             return ResponseEntity.notFound().build();
         }
 

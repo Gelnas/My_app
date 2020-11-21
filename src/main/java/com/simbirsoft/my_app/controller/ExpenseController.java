@@ -8,22 +8,24 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.util.ObjectUtils.isEmpty;
+
 @RestController
 @RequestMapping("/api/v1/expense")
 public class ExpenseController {
 
     @Autowired
-    private ExpenseServiсe expenseServise;
+    private ExpenseServiсe expenseService;
 
     @GetMapping("/{id}")
     public ResponseEntity<Expense> getById(@PathVariable("id") Long id){
 
-        if(id == null){
+        if(isEmpty(id)){
             return ResponseEntity.badRequest().build();
         }
 
-        Expense expense = expenseServise.getById(id);
-        if (expense.equals(null)){
+        Expense expense = expenseService.getById(id);
+        if (isEmpty(expense)){
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(expense);
@@ -31,27 +33,27 @@ public class ExpenseController {
 
     @PostMapping("/create")
     public ResponseEntity<String> addElectData(@RequestBody ExpenseDto expenseDto){
-        if(expenseDto.equals(null)){
+        if(isEmpty(expenseDto)){
             return ResponseEntity.badRequest().build();
         }
 
-        expenseServise.save(expenseDto);
+        expenseService.save(expenseDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
-        if(id == null){
+        if(isEmpty(id)){
             return ResponseEntity.badRequest().build();
         }
 
-        Expense expense = expenseServise.getById(id);
-        if(expense.equals(null)){
+        Expense expense = expenseService.getById(id);
+        if(isEmpty(expense)){
             return ResponseEntity.notFound().build();
         }
 
-        expenseServise.delete(id);
+        expenseService.delete(id);
         return ResponseEntity.ok().build();
     }
 

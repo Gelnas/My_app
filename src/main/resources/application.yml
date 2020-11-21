@@ -6,6 +6,6 @@ spring:
     initialization-mode: always
     platform: postgresql
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/exp
+    url: jdbc:postgresql://localhost:5432/comm
     username: postgres
     password: 12345

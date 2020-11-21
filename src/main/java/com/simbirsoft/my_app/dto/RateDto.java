@@ -6,7 +6,7 @@ public class RateDto {
 
     //тариф горячей воды
     private Double rateWH;
-    //тариф холдной воды
+    //тариф холодной воды
     private Double rateWC;
     //тариф электричества
     private Double rateE;

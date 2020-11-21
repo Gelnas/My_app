@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import static org.springframework.util.ObjectUtils.isEmpty;
+
 
 @RestController
 @RequestMapping("/api/v1/rate")
@@ -18,12 +20,12 @@ public class RateController {
     @GetMapping("/{id}")
     public ResponseEntity<Rate> getById(@PathVariable("id") Long id){
 
-        if(id == null){
+        if(isEmpty(id)){
             return ResponseEntity.badRequest().build();
         }
 
         Rate rate = rateServiсe.getById(id);
-        if (rate.equals(null)){
+        if (isEmpty(rate)){
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(rate);
@@ -32,7 +34,7 @@ public class RateController {
     @PostMapping("/create")
     public ResponseEntity<String> addElectData(@RequestBody RateDto rateDto){
 
-        if(rateDto.equals(null)){
+        if(isEmpty(rateDto)){
             return ResponseEntity.badRequest().build();
         }
 
@@ -42,12 +44,12 @@ public class RateController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
-        if(id == null){
+        if(isEmpty(id)){
             return ResponseEntity.badRequest().build();
         }
 
         Rate rate = rateServiсe.getById(id);
-        if(rate.equals(null)){
+        if(isEmpty(rate)){
             return ResponseEntity.notFound().build();
         }
 

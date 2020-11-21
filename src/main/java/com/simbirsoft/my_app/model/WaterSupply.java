@@ -2,7 +2,7 @@ package com.simbirsoft.my_app.model;
 
 import javax.persistence.*;
 import java.util.Calendar;
-
+//Показания счётчика водоснабжения
 @Entity
 @Table(name = "water_supply")
 public class WaterSupply {
@@ -14,16 +14,20 @@ public class WaterSupply {
     @Column(name = "date")
     private Calendar date;
 
-    @Column(name = "counter_hot")
+    //Показания ГВС
+    @Column(name = "counterHot")
     private Integer counterHot;
 
-    @Column(name = "counter_cold")
+    //Показания ХВС
+    @Column(name = "counterCold")
     private Integer counterCold;
 
-    @Column(name = "score_hot")
+    //Чек за ГВС
+    @Column(name = "scoreHot")
     private Double scoreHot;
 
-    @Column(name = "score_cold")
+    //Чек за ХВС
+    @Column(name = "scoreCold")
     private Double scoreCold;
 
     public Long getId() {

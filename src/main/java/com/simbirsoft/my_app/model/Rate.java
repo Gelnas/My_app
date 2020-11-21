@@ -4,6 +4,7 @@ package com.simbirsoft.my_app.model;
 import javax.persistence.*;
 
 //тарифы
+
 @Entity
 @Table(name = "rate")
 public class Rate {
@@ -12,13 +13,16 @@ public class Rate {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "rate_wh")
+    //тарифы на холодную воду
+    @Column(name = "ratewh")
     private Double rateWH;
 
-    @Column(name = "rate_wc")
+    //тарифы на горячую воду
+    @Column(name = "ratewc")
     private Double rateWC;
 
-    @Column(name = "rate_E")
+    //тарифы на электричество
+    @Column(name = "rateE")
     private Double rateE;
 
     public Long getId() {

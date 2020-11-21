@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import javax.persistence.*;
 import java.util.Calendar;
 
+// Показатели электросчётчика
+
 @Entity
 @Table(name = "electricity")
 public class Electricity {
@@ -16,9 +18,11 @@ public class Electricity {
     @Column(name = "date")
     private Calendar date;
 
+    //Показания счётчика
     @Column(name = "counter")
     private Integer counter;
 
+    //Сумма за месяц
     @Column(name = "score")
     private Double score;
 

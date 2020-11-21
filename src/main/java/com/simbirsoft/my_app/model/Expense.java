@@ -3,6 +3,8 @@ package com.simbirsoft.my_app.model;
 import javax.persistence.*;
 import java.util.Calendar;
 
+//траты за месяц по всем категориям
+
 @Entity
 @Table(name = "expense")
 public class Expense {
@@ -15,12 +17,14 @@ public class Expense {
     @Column(name = "date")
     private Calendar date;
 
+    //траты за воду в течении месяца
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "water_id", referencedColumnName = "id")
+    @JoinColumn(name = "waterId", referencedColumnName = "id")
     private WaterSupply scoreWater;
 
+    //траты за электричество в течении месяца
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "elect_id", referencedColumnName = "id")
+    @JoinColumn(name = "electId", referencedColumnName = "id")
     private Electricity scoreElect;
 
    public Long getId() {
