@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
@@ -42,4 +43,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private Collection<? extends GrantedAuthority> mapRolesToPermission(Collection<Role> roles){
         return roles.stream().map(r -> new SimpleGrantedAuthority(r.getRole())).collect(Collectors.toList());
     }
+
+//    private Collection<? extends GrantedAuthority>  mapRolesToPermission(Users user){
+//
+//    }
 }

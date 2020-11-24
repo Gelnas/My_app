@@ -29,9 +29,9 @@ public class Config extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/v1/**").hasAnyRole("ROLE_USER", "ROLE_ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/v1/**").hasAnyRole("SUPER_ADMIN", "ROLE_USER", "ROLE_ADMIN")
                 .antMatchers(HttpMethod.GET, "/api/v1/**").hasAnyAuthority("READ", "WRITE")
-                .antMatchers(HttpMethod.DELETE, "/api/v1/**").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/v1/**").hasAnyRole("SUPER_ADMIN")
                 .antMatchers(HttpMethod.POST, "/api/v1/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
@@ -39,18 +39,7 @@ public class Config extends WebSecurityConfigurerAdapter {
                 .httpBasic();
     }
 
-//    @Bean
-//    @Override
-//    protected UserDetailsService userDetailsService() {
-//        return new InMemoryUserDetailsManager(
-//                User.builder()
-//                .username("admin")
-//                .password(passwordEncoder().encode("12345"))
-//                .roles("ADMIN")
-//                .build()
-//        );
-//    }
-//
+
     protected PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
