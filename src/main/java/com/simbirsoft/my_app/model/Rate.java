@@ -14,15 +14,15 @@ public class Rate {
     private Long id;
 
     //тарифы на холодную воду
-    @Column(name = "ratewh")
+    @Column(name = "rate_wh")
     private Double rateWH;
 
     //тарифы на горячую воду
-    @Column(name = "ratewc")
+    @Column(name = "rate_wc")
     private Double rateWC;
 
     //тарифы на электричество
-    @Column(name = "rateE")
+    @Column(name = "rate_E")
     private Double rateE;
 
     public Long getId() {

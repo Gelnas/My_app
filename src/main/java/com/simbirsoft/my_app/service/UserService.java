@@ -1,2 +1,5 @@
-package com.simbirsoft.my_app.service;public interface UserService {
+package com.simbirsoft.my_app.service;
+
+public interface UserService {
+
 }
