@@ -6,6 +6,7 @@ import com.simbirsoft.my_app.service.RateServiсe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import static org.springframework.util.ObjectUtils.isEmpty;
 
@@ -17,6 +18,7 @@ public class RateController {
     @Autowired
     private RateServiсe rateServiсe;
 
+    @PreAuthorize("hasAuthority('READ')")
     @GetMapping("/{id}")
     public ResponseEntity<Rate> getById(@PathVariable("id") Long id){
 
@@ -31,6 +33,7 @@ public class RateController {
         return ResponseEntity.ok(rate);
     }
 
+    @PreAuthorize("hasAuthority('WRITE')")
     @PostMapping("/create")
     public ResponseEntity<String> addElectData(@RequestBody RateDto rateDto){
 
@@ -42,6 +45,7 @@ public class RateController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @PreAuthorize("hasAuthority('DELETE')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
         if(isEmpty(id)){

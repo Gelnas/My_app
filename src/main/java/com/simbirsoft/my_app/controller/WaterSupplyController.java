@@ -7,6 +7,7 @@ import com.simbirsoft.my_app.service.WaterSupplyServiсe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import static org.springframework.util.ObjectUtils.isEmpty;
 
@@ -17,6 +18,7 @@ public class WaterSupplyController {
     @Autowired
     private WaterSupplyServiсe waterSupplyServiсe;
 
+    @PreAuthorize("hasAuthority('READ')")
     @GetMapping("/{id}")
     public ResponseEntity<WaterSupply> getById(@PathVariable("id") Long id){
 
@@ -31,6 +33,7 @@ public class WaterSupplyController {
         return ResponseEntity.ok(waterSupply);
     }
 
+    @PreAuthorize("hasAuthority('WRTIE')")
     @PostMapping("/create")
     public ResponseEntity<String> addElectData(@RequestBody WaterSupplyDto waterSupplyDto, RateDto rateDto){
 
@@ -42,6 +45,7 @@ public class WaterSupplyController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @PreAuthorize("hasAuthority('DELETE')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
         if(isEmpty(id)){

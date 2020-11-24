@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -19,6 +20,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class Config extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -29,10 +31,6 @@ public class Config extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/v1/**").hasAnyRole("SUPER_ADMIN", "ROLE_USER", "ROLE_ADMIN")
-                .antMatchers(HttpMethod.GET, "/api/v1/**").hasAnyAuthority("READ", "WRITE")
-                .antMatchers(HttpMethod.DELETE, "/api/v1/**").hasAnyRole("SUPER_ADMIN")
-                .antMatchers(HttpMethod.POST, "/api/v1/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -41,7 +39,7 @@ public class Config extends WebSecurityConfigurerAdapter {
 
 
     protected PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(4);
     }
 
     @Bean

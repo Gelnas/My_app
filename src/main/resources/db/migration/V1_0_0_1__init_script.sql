@@ -71,3 +71,13 @@ CREATE TABLE IF NOT EXISTS roles_permission(
    FOREIGN KEY (role_id) REFERENCES roles (id)
 );
 
+
+CREATE TABLE IF NOT EXISTS user_roles_permissions(
+   user_id   integer not null,
+   role_id   integer not null,
+   perm_id   integer not null,
+   PRIMARY  KEY (user_id, role_id, perm_id),
+   FOREIGN KEY (user_id) REFERENCES users (id),
+   FOREIGN KEY (perm_id) REFERENCES permission (id),
+   FOREIGN KEY (role_id) REFERENCES roles (id)
+);

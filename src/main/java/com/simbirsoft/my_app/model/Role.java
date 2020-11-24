@@ -35,4 +35,12 @@ public class Role {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public Collection<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Collection<Permission> permissions) {
+        this.permissions = permissions;
+    }
 }
