@@ -40,28 +40,26 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userRepository.findByUsername(username);
     }
 
-    public  Role findByRole(String role_){return roleRepository.findByRole(role_);}
+    public  Role findByRole(String role){return roleRepository.findByRole(role);}
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Users user = findByUsername(username);
-        Collection<Role> role = user.getRoles();
 
         if(isEmpty(user)){
             throw new UsernameNotFoundException("User not found");
         }
-        return new User(user.getUsername(), user.getPassword(), mapRolesToPermission(mapRoles(user.getRoles())));
+        return new User(user.getUsername(), user.getPassword(), mapRolesToPermission(user.getRoles()));
     }
 
-    private Collection<? extends GrantedAuthority> mapRolesToPermission(Collection<Permission> permissions){
-     return permissions.stream().map(r -> new SimpleGrantedAuthority(r.getPermission())).collect(Collectors.toList());
-    }
 
-    private Collection<Permission> mapRoles(Collection<Role> roles){
-        String roleName = roles.stream().map(r -> new SimpleGrantedAuthority(r.getRole())).collect(Collectors.toList()).get(0).toString();
-        Role role = findByRole(roleName);
-        return role.getPermissions();
+
+    private Collection<? extends GrantedAuthority> mapRolesToPermission(Collection<Role> roles){
+        return roles.stream()
+                .flatMap(role -> role.getPermissions().stream())
+                .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
+                .collect(Collectors.toList());
     }
 
 }

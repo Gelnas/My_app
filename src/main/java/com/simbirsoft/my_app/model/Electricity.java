@@ -15,7 +15,7 @@ public class Electricity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "date")
+    @Column(name = "dateN")
     private Calendar date;
 
     //Показания счётчика
