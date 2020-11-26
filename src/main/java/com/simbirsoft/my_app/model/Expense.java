@@ -19,12 +19,12 @@ public class Expense {
 
     //траты за воду в течении месяца
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "waterId", referencedColumnName = "id")
+    @JoinColumn(name = "water_Id", referencedColumnName = "id")
     private WaterSupply scoreWater;
 
     //траты за электричество в течении месяца
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "electId", referencedColumnName = "id")
+    @JoinColumn(name = "elect_Id", referencedColumnName = "id")
     private Electricity scoreElect;
 
    public Long getId() {

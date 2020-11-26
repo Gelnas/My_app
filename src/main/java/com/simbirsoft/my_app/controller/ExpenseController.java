@@ -6,6 +6,7 @@ import com.simbirsoft.my_app.service.ExpenseServiсe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
@@ -17,6 +18,7 @@ public class ExpenseController {
     @Autowired
     private ExpenseServiсe expenseService;
 
+    @PreAuthorize("hasAuthority('READ')")
     @GetMapping("/{id}")
     public ResponseEntity<Expense> getById(@PathVariable("id") Long id){
 
@@ -31,6 +33,7 @@ public class ExpenseController {
         return ResponseEntity.ok(expense);
     }
 
+    @PreAuthorize("hasAuthority('WRITE')")
     @PostMapping("/create")
     public ResponseEntity<String> addElectData(@RequestBody ExpenseDto expenseDto){
         if(isEmpty(expenseDto)){
@@ -42,6 +45,7 @@ public class ExpenseController {
     }
 
 
+    @PreAuthorize("hasAuthority('DELETE')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
         if(isEmpty(id)){
