@@ -1,6 +1,5 @@
 package com.simbirsoft.my_app.dto;
 
-import javax.persistence.Column;
 import java.util.Calendar;
 
 public class WaterSupplyDto {
@@ -8,7 +7,6 @@ public class WaterSupplyDto {
     private Calendar date;
     private Integer counterHot;
     private Integer counterCold;
-
 
     public Calendar getDate() {
         return date;
