@@ -33,11 +33,6 @@ public class ExpenseServiсeImpl implements ExpenseServiсe {
     @Override
     public void save(ExpenseDto expenseDto) {
         expenseRepository.save(expenseMapper.toExpense(expenseDto));
-//        Expense expense = Expense.builder()
-//                .date(expenseDto.getDate())
-//                .scoreElect(electricityServiсe.getById(expenseDto.getElectId()))
-//                .scoreWater(waterSupplyServiсe.getById(expenseDto.getWaterId()))
-//                .build();
     }
 
     @Override

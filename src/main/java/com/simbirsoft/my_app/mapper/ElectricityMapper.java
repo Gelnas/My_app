@@ -9,7 +9,6 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
 @Mapper(componentModel = "spring")
-//@RequiredArgsConstructor
 public interface ElectricityMapper {
     @Mappings({
             @Mapping(target = "id", ignore = true),

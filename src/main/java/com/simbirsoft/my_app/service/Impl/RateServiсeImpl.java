@@ -25,11 +25,6 @@ public class RateServiсeImpl implements RateServiсe {
     @Override
     public void save(RateDto rateDto) {
         rateRepository.save(rateMapper.toRate(rateDto));
-//        Rate rate = Rate.builder()
-//                .rateE(rateDto.getRateE())
-//                .rateWC(rateDto.getRateWC())
-//                .rateWH(rateDto.getRateWH())
-//                .build();
  }
 
     @Override

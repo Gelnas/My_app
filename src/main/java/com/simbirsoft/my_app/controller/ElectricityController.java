@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
 
-@AllArgsConstructor
+
 @RestController
 @RequestMapping("/api/v1/electricity")
+@AllArgsConstructor
 public class ElectricityController {
 
     @Autowired

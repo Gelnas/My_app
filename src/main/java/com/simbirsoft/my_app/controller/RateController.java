@@ -3,6 +3,8 @@ package com.simbirsoft.my_app.controller;
 import com.simbirsoft.my_app.dto.RateDto;
 import com.simbirsoft.my_app.model.Rate;
 import com.simbirsoft.my_app.service.RateServiсe;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,7 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 @RestController
 @RequestMapping("/api/v1/rate")
 @AllArgsConstructor
+@Api
 public class RateController {
 
     @Autowired
@@ -22,9 +25,9 @@ public class RateController {
 
     @PreAuthorize("hasAuthority('READ')")
     @GetMapping("/{id}")
+    @ApiOperation(value = "find rate by id")
     public ResponseEntity<Rate> getById(@PathVariable("id") Long id){
-
-        if(isEmpty(id)){
+            if(isEmpty(id)){
             return ResponseEntity.badRequest().build();
         }
 

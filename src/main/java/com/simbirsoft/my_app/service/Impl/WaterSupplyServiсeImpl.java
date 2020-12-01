@@ -30,14 +30,6 @@ public class WaterSupplyServiсeImpl implements WaterSupplyServiсe {
         waterSupply.setScoreHot(waterSupplyDto.getCounterHot() * rateDto.getRateWH());
         waterSupply.setScoreCold(waterSupplyDto.getCounterCold() * rateDto.getRateWC());
         waterSupplyRepository.save(waterSupply);
-
-//        WaterSupply waterSupply = WaterSupply.builder()
-//                .date(waterSupplyDto.getDate())
-//                .counterCold(waterSupplyDto.getCounterCold())
-//                .counterHot(waterSupplyDto.getCounterHot())
-//                .scoreCold(waterSupplyDto.getCounterCold() * rateDto.getRateWC())
-//                .scoreHot(waterSupplyDto.getCounterHot() * rateDto.getRateWH())
-//                .build();
     }
 
     @Override
