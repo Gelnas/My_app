@@ -1,11 +1,18 @@
 package com.simbirsoft.my_app.dto;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiResponse;
+
 import java.util.Calendar;
 
+@Api(tags = "WSDto")
 public class WaterSupplyDto {
 
     private Calendar date;
+
     private Integer counterHot;
+
+
     private Integer counterCold;
 
     public Calendar getDate() {

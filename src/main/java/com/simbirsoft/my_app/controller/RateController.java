@@ -17,7 +17,7 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 @RestController
 @RequestMapping("/api/v1/rate")
 @AllArgsConstructor
-@Api
+@Api(tags = "Rate")
 public class RateController {
 
     @Autowired

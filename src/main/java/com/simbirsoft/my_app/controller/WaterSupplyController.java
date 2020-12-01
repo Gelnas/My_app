@@ -4,6 +4,8 @@ import com.simbirsoft.my_app.dto.RateDto;
 import com.simbirsoft.my_app.dto.WaterSupplyDto;
 import com.simbirsoft.my_app.model.WaterSupply;
 import com.simbirsoft.my_app.service.WaterSupplyServiсe;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,12 +18,14 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 @RestController
 @RequestMapping("/api/v1/waterSupply")
 @AllArgsConstructor
+@Api(tags = "WaterSupply")
 public class WaterSupplyController {
 
     @Autowired
     private final WaterSupplyServiсe waterSupplyServiсe;
 
     @PreAuthorize("hasAuthority('READ')")
+    @ApiOperation(value = "find by id")
     @GetMapping("/{id}")
     public ResponseEntity<WaterSupply> getById(@PathVariable("id") Long id){
 
@@ -37,6 +41,7 @@ public class WaterSupplyController {
     }
 
     @PreAuthorize("hasAuthority('WRTIE')")
+    @ApiOperation(value = "create new water supply")
     @PostMapping("/create")
     public ResponseEntity<String> addElectData(@RequestBody WaterSupplyDto waterSupplyDto, RateDto rateDto){
 
@@ -49,6 +54,7 @@ public class WaterSupplyController {
     }
 
     @PreAuthorize("hasAuthority('DELETE')")
+    @ApiOperation(value = "delete water supply by id")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
         if(isEmpty(id)){

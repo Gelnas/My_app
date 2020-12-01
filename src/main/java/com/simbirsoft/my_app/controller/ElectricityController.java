@@ -5,6 +5,7 @@ import com.simbirsoft.my_app.dto.RateDto;
 import com.simbirsoft.my_app.model.Electricity;
 import com.simbirsoft.my_app.service.ElectricityServiсe;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.query.criteria.internal.predicate.IsEmptyPredicate;
@@ -20,12 +21,14 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 @RestController
 @RequestMapping("/api/v1/electricity")
 @RequiredArgsConstructor
+@Api(tags = "Electricity")
 public class ElectricityController {
 
     @Autowired
     private final ElectricityServiсe electricityServiсe;
 
     @PreAuthorize("hasAuthority('READ')")
+    @ApiOperation(value = "find by id")
     @GetMapping("/{id}")
     public ResponseEntity<Electricity> getById(@PathVariable("id") Long id){
 
@@ -41,6 +44,7 @@ public class ElectricityController {
     }
 
     @PreAuthorize("hasAuthority('WRITE')")
+    @ApiOperation(value = "create new electricity")
     @PostMapping("/create")
     public ResponseEntity<String> addElectData(@RequestBody ElectricityDto electricityDto, RateDto rateDto){
         if(isEmpty(electricityDto)|| isEmpty(rateDto)){
@@ -51,7 +55,9 @@ public class ElectricityController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+
     @PreAuthorize("hasAuthority('DELETE')")
+    @ApiOperation(value = "delete electricity by id")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
         if(isEmpty(id)){
