@@ -40,6 +40,7 @@ public class RateController {
 
     @PreAuthorize("hasAuthority('WRITE')")
     @PostMapping("/create")
+    @ApiOperation(value = "create new rate")
     public ResponseEntity<String> addElectData(@RequestBody RateDto rateDto){
 
         if(isEmpty(rateDto)){
@@ -52,6 +53,7 @@ public class RateController {
 
     @PreAuthorize("hasAuthority('DELETE')")
     @DeleteMapping("/{id}")
+    @ApiOperation(value = "delete old rate")
     public ResponseEntity<String> delete(@PathVariable Long id){
         if(isEmpty(id)){
             return ResponseEntity.badRequest().build();

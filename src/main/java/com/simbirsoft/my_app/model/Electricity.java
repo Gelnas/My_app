@@ -1,9 +1,12 @@
 package com.simbirsoft.my_app.model;
 
+import com.sun.istack.NotNull;
 import jdk.jfr.DataAmount;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.NotFound;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
@@ -22,10 +25,12 @@ public class Electricity {
     private Long id;
 
     @Column(name = "dateN")
+    @NonNull
     private Calendar date;
 
     //Показания счётчика
     @Column(name = "counter")
+    @NotNull
     private Integer counter;
 
     //Сумма за месяц
