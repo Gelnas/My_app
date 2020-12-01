@@ -2,6 +2,7 @@ package com.simbirsoft.my_app.model;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Calendar;
@@ -10,7 +11,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "roles")
 @Data
-@Builder
+@RequiredArgsConstructor
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -4,6 +4,8 @@ import com.simbirsoft.my_app.dto.ElectricityDto;
 import com.simbirsoft.my_app.dto.RateDto;
 import com.simbirsoft.my_app.model.Electricity;
 import com.simbirsoft.my_app.service.ElectricityServiсe;
+import io.swagger.annotations.Api;
+import lombok.AllArgsConstructor;
 import org.hibernate.query.criteria.internal.predicate.IsEmptyPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,12 +15,13 @@ import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/v1/electricity")
 public class ElectricityController {
 
     @Autowired
-    private ElectricityServiсe electricityServiсe;
+    private final ElectricityServiсe electricityServiсe;
 
     @PreAuthorize("hasAuthority('READ')")
     @GetMapping("/{id}")

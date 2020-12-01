@@ -3,6 +3,7 @@ package com.simbirsoft.my_app.controller;
 import com.simbirsoft.my_app.dto.ExpenseDto;
 import com.simbirsoft.my_app.model.Expense;
 import com.simbirsoft.my_app.service.ExpenseServiсe;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +14,11 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 
 @RestController
 @RequestMapping("/api/v1/expense")
+@AllArgsConstructor
 public class ExpenseController {
 
     @Autowired
-    private ExpenseServiсe expenseService;
+    private final ExpenseServiсe expenseService;
 
     @PreAuthorize("hasAuthority('READ')")
     @GetMapping("/{id}")

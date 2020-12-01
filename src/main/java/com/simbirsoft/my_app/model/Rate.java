@@ -4,6 +4,7 @@ package com.simbirsoft.my_app.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "rate")
 @Data
-//@Builder
+@RequiredArgsConstructor
 public class Rate {
 
     @Id

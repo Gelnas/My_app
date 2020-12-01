@@ -3,11 +3,13 @@ package com.simbirsoft.my_app.mapper;
 import com.simbirsoft.my_app.dto.ElectricityDto;
 import com.simbirsoft.my_app.dto.RateDto;
 import com.simbirsoft.my_app.model.Electricity;
+import lombok.RequiredArgsConstructor;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
 @Mapper(componentModel = "spring")
+//@RequiredArgsConstructor
 public interface ElectricityMapper {
     @Mappings({
             @Mapping(target = "id", ignore = true),

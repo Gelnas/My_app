@@ -3,6 +3,7 @@ package com.simbirsoft.my_app.controller;
 import com.simbirsoft.my_app.dto.RateDto;
 import com.simbirsoft.my_app.model.Rate;
 import com.simbirsoft.my_app.service.RateServiсe;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +14,11 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 
 @RestController
 @RequestMapping("/api/v1/rate")
+@AllArgsConstructor
 public class RateController {
 
     @Autowired
-    private RateServiсe rateServiсe;
+    private final RateServiсe rateServiсe;
 
     @PreAuthorize("hasAuthority('READ')")
     @GetMapping("/{id}")

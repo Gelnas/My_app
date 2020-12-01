@@ -2,6 +2,7 @@ package com.simbirsoft.my_app.model;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Calendar;
@@ -9,7 +10,7 @@ import java.util.Calendar;
 @Entity
 @Table(name = "water_supply")
 @Data
-@Builder
+@RequiredArgsConstructor
 public class WaterSupply {
 
     @Id

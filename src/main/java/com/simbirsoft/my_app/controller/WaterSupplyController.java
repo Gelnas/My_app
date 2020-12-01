@@ -4,6 +4,7 @@ import com.simbirsoft.my_app.dto.RateDto;
 import com.simbirsoft.my_app.dto.WaterSupplyDto;
 import com.simbirsoft.my_app.model.WaterSupply;
 import com.simbirsoft.my_app.service.WaterSupplyServiсe;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,12 +12,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import static org.springframework.util.ObjectUtils.isEmpty;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/v1/waterSupply")
 public class WaterSupplyController {
 
     @Autowired
-    private WaterSupplyServiсe waterSupplyServiсe;
+    private final WaterSupplyServiсe waterSupplyServiсe;
 
     @PreAuthorize("hasAuthority('READ')")
     @GetMapping("/{id}")
