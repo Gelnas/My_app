@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class ElectricityServiсeImpl implements ElectricityServiсe {
 
     @Autowired
-    private final  ElectricityRepository electricityRepository;
+    private final ElectricityRepository electricityRepository;
 
     @Autowired
     private final ElectricityMapper electricityMapper;
@@ -30,6 +30,7 @@ public class ElectricityServiсeImpl implements ElectricityServiсe {
         Electricity electricity = electricityMapper.toElectricity(electDto);
         electricity.setScore(electDto.getCounter() * rateDto.getRateE());
         electricityRepository.save(electricity);
+
 }
 
     @Override

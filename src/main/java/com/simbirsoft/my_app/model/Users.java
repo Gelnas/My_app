@@ -2,6 +2,7 @@ package com.simbirsoft.my_app.model;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "users")
 @Data
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

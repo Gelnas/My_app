@@ -12,10 +12,10 @@ import javax.persistence.Table;
 public interface ExpenseMapper {
 
     @Mappings({
-            @Mapping(target = "id", ignore = true),
-            @Mapping(target = "date", source = "date"),
-            @Mapping(target = "scoreWater", source = "waterId"),
-            @Mapping(target = "scoreElect", source = "electId")
+            @Mapping(target = "id", ignore = true)
+
+            //@Mapping(target = "scoreWater", source = "waterId"),
+           // @Mapping(target = "scoreElect", source = "electId")
     })
     Expense toExpense(ExpenseDto expenseDto);
 }

@@ -6,6 +6,7 @@ import com.simbirsoft.my_app.model.Electricity;
 import com.simbirsoft.my_app.service.ElectricityServiсe;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.query.criteria.internal.predicate.IsEmptyPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 
 @RestController
 @RequestMapping("/api/v1/electricity")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ElectricityController {
 
     @Autowired

@@ -12,7 +12,6 @@ import org.mapstruct.Mappings;
 public interface ElectricityMapper {
     @Mappings({
             @Mapping(target = "id", ignore = true),
-            @Mapping(target = "dateN", source = "date"),
             @Mapping(target = "score", ignore = true)
     })
     Electricity toElectricity(ElectricityDto electricityDto);
