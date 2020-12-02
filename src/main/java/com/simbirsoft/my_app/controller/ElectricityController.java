@@ -6,6 +6,8 @@ import com.simbirsoft.my_app.model.Electricity;
 import com.simbirsoft.my_app.service.ElectricityServiсe;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Authorization;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.query.criteria.internal.predicate.IsEmptyPredicate;
@@ -28,9 +30,15 @@ public class ElectricityController {
     private final ElectricityServiсe electricityServiсe;
 
     @PreAuthorize("hasAuthority('READ')")
-    @ApiOperation(value = "find by id")
+    @ApiOperation(authorizations = {@Authorization(value = "basicAuth")}, value = "Find by id")
     @GetMapping("/{id}")
-    public ResponseEntity<Electricity> getById(@PathVariable("id") Long id){
+    public ResponseEntity<Electricity> getById(@ApiParam(
+            name =  "id",
+            type = "Integer",
+            value = "Electricity id",
+            example = "1",
+            required = true)
+            @PathVariable("id") Long id){
 
         if(isEmpty(id)){
             return ResponseEntity.badRequest().build();
@@ -44,7 +52,7 @@ public class ElectricityController {
     }
 
     @PreAuthorize("hasAuthority('WRITE')")
-    @ApiOperation(value = "create new electricity")
+    @ApiOperation(authorizations = {@Authorization(value = "basicAuth")}, value = "Create new electricity")
     @PostMapping("/create")
     public ResponseEntity<String> addElectData(@RequestBody ElectricityDto electricityDto, RateDto rateDto){
         if(isEmpty(electricityDto)|| isEmpty(rateDto)){
@@ -57,9 +65,15 @@ public class ElectricityController {
 
 
     @PreAuthorize("hasAuthority('DELETE')")
-    @ApiOperation(value = "delete electricity by id")
+    @ApiOperation(authorizations = {@Authorization(value = "basicAuth")}, value = "Delete electricity by id")
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable Long id){
+    public ResponseEntity<String> delete(@ApiParam(
+            name =  "id",
+            type = "Integer",
+            value = "Electricity id",
+            example = "1",
+            required = true)
+            @PathVariable Long id){
         if(isEmpty(id)){
             return ResponseEntity.badRequest().build();
         }

@@ -5,6 +5,8 @@ import com.simbirsoft.my_app.model.Expense;
 import com.simbirsoft.my_app.service.ExpenseServiсe;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Authorization;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,9 +26,15 @@ public class ExpenseController {
     private final ExpenseServiсe expenseService;
 
     @PreAuthorize("hasAuthority('READ')")
-    @ApiOperation(value = "find rate by id")
+    @ApiOperation(authorizations = {@Authorization(value = "basicAuth")}, value = "Find rate by id")
     @GetMapping("/{id}")
-    public ResponseEntity<Expense> getById(@PathVariable("id") Long id){
+    public ResponseEntity<Expense> getById(@ApiParam(
+            name =  "id",
+            type = "Integer",
+            value = "Expense id",
+            example = "1",
+            required = true)
+            @PathVariable("id") Long id){
 
         if(isEmpty(id)){
             return ResponseEntity.badRequest().build();
@@ -40,7 +48,7 @@ public class ExpenseController {
     }
 
     @PreAuthorize("hasAuthority('WRITE')")
-    @ApiOperation(value = "create new expense")
+    @ApiOperation(authorizations = {@Authorization(value = "basicAuth")}, value = "Create new expense")
     @PostMapping("/create")
     public ResponseEntity<String> addElectData(@RequestBody ExpenseDto expenseDto){
         if(isEmpty(expenseDto)){
@@ -53,9 +61,15 @@ public class ExpenseController {
 
 
     @PreAuthorize("hasAuthority('DELETE')")
-    @ApiOperation(value = "delete expense by id")
+    @ApiOperation(authorizations = {@Authorization(value = "basicAuth")}, value = "Delete expense by id")
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable Long id){
+    public ResponseEntity<String> delete(@ApiParam(
+            name =  "id",
+            type = "Integer",
+            value = "Expense id",
+            example = "1",
+            required = true)
+            @PathVariable Long id){
         if(isEmpty(id)){
             return ResponseEntity.badRequest().build();
         }
