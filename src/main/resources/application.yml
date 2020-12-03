@@ -9,3 +9,10 @@ spring:
     url: jdbc:postgresql://localhost:5432/comm
     username: postgres
     password: 12345
+
+
+  springfox:
+    documentation:
+      swagger:
+        v2:
+          use-model-v3: true

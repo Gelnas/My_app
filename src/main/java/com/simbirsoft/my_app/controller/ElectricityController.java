@@ -4,12 +4,11 @@ import com.simbirsoft.my_app.dto.ElectricityDto;
 import com.simbirsoft.my_app.dto.RateDto;
 import com.simbirsoft.my_app.model.Electricity;
 import com.simbirsoft.my_app.service.ElectricityServiсe;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.Authorization;
+import io.swagger.annotations.*;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.hibernate.query.criteria.internal.predicate.IsEmptyPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +30,14 @@ public class ElectricityController {
 
     @PreAuthorize("hasAuthority('READ')")
     @ApiOperation(authorizations = {@Authorization(value = "basicAuth")}, value = "Find by id")
+    @Operation(summary = "Get rate information" )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", responseContainer = "List"),
+            @ApiResponse(code = 204, message = "No content"),
+            @ApiResponse(code = 401, message = "Unauthorized. To perform this operation, you need to log in"),
+            @ApiResponse(code = 403, message = "Forbidden. You don't have access to this data"),
+            @ApiResponse(code = 404, message = "Not found", response = ResourceNotFoundException.class)
+    })
     @GetMapping("/{id}")
     public ResponseEntity<Electricity> getById(@ApiParam(
             name =  "id",
@@ -53,6 +60,14 @@ public class ElectricityController {
 
     @PreAuthorize("hasAuthority('WRITE')")
     @ApiOperation(authorizations = {@Authorization(value = "basicAuth")}, value = "Create new electricity")
+    @Operation(summary = "Get rate information" )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", responseContainer = "List"),
+            @ApiResponse(code = 204, message = "No content"),
+            @ApiResponse(code = 401, message = "Unauthorized. To perform this operation, you need to log in"),
+            @ApiResponse(code = 403, message = "Forbidden. You don't have access to this data"),
+            @ApiResponse(code = 404, message = "Not found", response = ResourceNotFoundException.class)
+    })
     @PostMapping("/create")
     public ResponseEntity<String> addElectData(@RequestBody ElectricityDto electricityDto, RateDto rateDto){
         if(isEmpty(electricityDto)|| isEmpty(rateDto)){
@@ -66,6 +81,14 @@ public class ElectricityController {
 
     @PreAuthorize("hasAuthority('DELETE')")
     @ApiOperation(authorizations = {@Authorization(value = "basicAuth")}, value = "Delete electricity by id")
+    @Operation(summary = "Get rate information" )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", responseContainer = "List"),
+            @ApiResponse(code = 204, message = "No content"),
+            @ApiResponse(code = 401, message = "Unauthorized. To perform this operation, you need to log in"),
+            @ApiResponse(code = 403, message = "Forbidden. You don't have access to this data"),
+            @ApiResponse(code = 404, message = "Not found", response = ResourceNotFoundException.class)
+    })
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@ApiParam(
             name =  "id",

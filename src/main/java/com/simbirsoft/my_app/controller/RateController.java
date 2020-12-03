@@ -7,6 +7,7 @@ import io.swagger.annotations.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import lombok.AllArgsConstructor;
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +27,15 @@ public class RateController {
 
     @PreAuthorize("hasAuthority('READ')")
     @ApiOperation(authorizations = {@Authorization(value = "basicAuth")}, value = "find rate by id")
-
-    @GetMapping(value = "/{id}", produces = "application/json")
+    @Operation(summary = "Get rate information" )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", responseContainer = "List"),
+            @ApiResponse(code = 204, message = "No content"),
+            @ApiResponse(code = 401, message = "Unauthorized. To perform this operation, you need to log in"),
+            @ApiResponse(code = 403, message = "Forbidden. You don't have access to this data"),
+            @ApiResponse(code = 404, message = "Not found", response = ResourceNotFoundException.class)
+    })
+    @GetMapping(value = "/{id}")
     public ResponseEntity<Rate> getById( @ApiParam(
             name =  "id",
             type = "Integer",
@@ -51,9 +59,16 @@ public class RateController {
     }
 
     @PreAuthorize("hasAuthority('WRITE')")
-    @PostMapping("/create")
     @ApiOperation(authorizations = {@Authorization(value = "basicAuth")}, value = "Create new rate")
-    public ResponseEntity<String> addElectData(@ApiParam(
+    @Operation(summary = "Get rate information" )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", responseContainer = "List"),
+            @ApiResponse(code = 401, message = "Unauthorized. To perform this operation, you need to log in"),
+            @ApiResponse(code = 403, message = "Forbidden. You don't have access to this data"),
+            @ApiResponse(code = 404, message = "Not found", response = ResourceNotFoundException.class)
+    })
+    @PostMapping(value = "/create")
+       public ResponseEntity<String> addElectData(@ApiParam(
             name =  "id",
             value = "RateDto",
             required = true)
@@ -68,8 +83,15 @@ public class RateController {
     }
 
     @PreAuthorize("hasAuthority('DELETE')")
-    @DeleteMapping("/{id}")
     @ApiOperation(authorizations = {@Authorization(value = "basicAuth")}, value = "Delete old rate")
+    @Operation(summary = "Get rate information" )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", responseContainer = "List"),
+            @ApiResponse(code = 401, message = "Unauthorized. To perform this operation, you need to log in"),
+            @ApiResponse(code = 403, message = "Forbidden. You don't have access to this data"),
+            @ApiResponse(code = 404, message = "Not found", response = ResourceNotFoundException.class)
+    })
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<String> delete(@ApiParam(
             name =  "id",
             type = "Integer",
