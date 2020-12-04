@@ -1,7 +1,5 @@
 package com.simbirsoft.my_app.dto;
 
-import javax.persistence.Column;
-
 public class RateDto {
 
     //тариф горячей воды

@@ -7,7 +7,6 @@ import com.simbirsoft.my_app.service.WaterSupplyServiсe;
 import io.swagger.annotations.*;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
-import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +32,7 @@ public class WaterSupplyController {
             @ApiResponse(code = 204, message = "No content"),
             @ApiResponse(code = 401, message = "Unauthorized. To perform this operation, you need to log in"),
             @ApiResponse(code = 403, message = "Forbidden. You don't have access to this data"),
-            @ApiResponse(code = 404, message = "Not found", response = ResourceNotFoundException.class)
+            @ApiResponse(code = 404, message = "Not found")
     })
     @GetMapping(value = "/{id}")
     public ResponseEntity<WaterSupply> getById(@ApiParam(
@@ -63,7 +62,7 @@ public class WaterSupplyController {
             @ApiResponse(code = 204, message = "No content"),
             @ApiResponse(code = 401, message = "Unauthorized. To perform this operation, you need to log in"),
             @ApiResponse(code = 403, message = "Forbidden. You don't have access to this data"),
-            @ApiResponse(code = 404, message = "Not found", response = ResourceNotFoundException.class)
+            @ApiResponse(code = 404, message = "Not found")
     })
     @PostMapping(value = "/create")
     public ResponseEntity<String> addElectData(@RequestBody WaterSupplyDto waterSupplyDto, RateDto rateDto){
@@ -84,7 +83,7 @@ public class WaterSupplyController {
             @ApiResponse(code = 204, message = "No content"),
             @ApiResponse(code = 401, message = "Unauthorized. To perform this operation, you need to log in"),
             @ApiResponse(code = 403, message = "Forbidden. You don't have access to this data"),
-            @ApiResponse(code = 404, message = "Not found", response = ResourceNotFoundException.class)
+            @ApiResponse(code = 404, message = "Not found")
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@ApiParam(

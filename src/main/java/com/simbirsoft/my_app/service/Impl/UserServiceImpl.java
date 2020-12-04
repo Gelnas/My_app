@@ -1,6 +1,5 @@
 package com.simbirsoft.my_app.service.Impl;
 
-import com.simbirsoft.my_app.model.Permission;
 import com.simbirsoft.my_app.model.Role;
 import com.simbirsoft.my_app.model.Users;
 import com.simbirsoft.my_app.repository.RoleRepository;
