@@ -1,12 +1,13 @@
 package com.simbirsoft.my_app.model;
 
-import jdk.jfr.Enabled;
-
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import javax.persistence.*;
-import java.util.Calendar;
 
 @Entity
 @Table(name = "permission")
+@Data
+@NoArgsConstructor
 public class Permission {
 
     @Id
@@ -15,20 +16,4 @@ public class Permission {
 
     @Column(name = "permission")
     private String permission;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getPermission() {
-        return permission;
-    }
-
-    public void setPermission(String permission) {
-        this.permission = permission;
-    }
 }

@@ -1,6 +1,7 @@
 package com.simbirsoft.my_app.service.Impl;
 
 import com.simbirsoft.my_app.dto.RateDto;
+import com.simbirsoft.my_app.mapper.RateMapper;
 import com.simbirsoft.my_app.model.Rate;
 import com.simbirsoft.my_app.repository.RateRepository;
 import com.simbirsoft.my_app.service.RateServiсe;
@@ -13,6 +14,8 @@ public class RateServiсeImpl implements RateServiсe {
     @Autowired
     private RateRepository rateRepository;
 
+    @Autowired
+    private RateMapper rateMapper;
 
     @Override
     public Rate getById(Long id) {
@@ -21,15 +24,8 @@ public class RateServiсeImpl implements RateServiсe {
 
     @Override
     public void save(RateDto rateDto) {
-        Rate rate = new Rate();
-
-        rate.setRateE(rateDto.getRateE());
-        rate.setRateWC(rateDto.getRateWC());
-        rate.setRateWH(rateDto.getRateWH());
-
-        rateRepository.save(rate);
-
-    }
+        rateRepository.save(rateMapper.toRate(rateDto));
+ }
 
     @Override
     public void delete(Long id) {

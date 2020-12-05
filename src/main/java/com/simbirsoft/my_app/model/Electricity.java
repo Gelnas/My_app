@@ -1,7 +1,6 @@
 package com.simbirsoft.my_app.model;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
+import lombok.*;
 import javax.persistence.*;
 import java.util.Calendar;
 
@@ -9,6 +8,8 @@ import java.util.Calendar;
 
 @Entity
 @Table(name = "electricity")
+@Data
+@NoArgsConstructor
 public class Electricity {
 
     @Id
@@ -25,36 +26,4 @@ public class Electricity {
     //Сумма за месяц
     @Column(name = "score")
     private Double score;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Calendar getDate() {
-        return date;
-    }
-
-    public void setDate(Calendar date) {
-        this.date = date;
-    }
-
-    public Integer getCounter() {
-        return counter;
-    }
-
-    public void setCounter(Integer counter) {
-        this.counter = counter;
-    }
-
-    public Double getScore() {
-        return score;
-    }
-
-    public void setScore(Double score) {
-        this.score = score;
-    }
 }

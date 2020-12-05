@@ -1,5 +1,7 @@
 package com.simbirsoft.my_app.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Calendar;
 
@@ -7,6 +9,8 @@ import java.util.Calendar;
 
 @Entity
 @Table(name = "expense")
+@Data
+@NoArgsConstructor
 public class Expense {
 
     @Id
@@ -26,39 +30,4 @@ public class Expense {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "elect_Id", referencedColumnName = "id")
     private Electricity scoreElect;
-
-   public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Calendar getDate() {
-        return date;
-    }
-
-    public void setDate(Calendar date) {
-        this.date = date;
-    }
-
-    public WaterSupply getScoreWater() {
-        return scoreWater;
-    }
-
-    public void setScoreWater(WaterSupply scoreWater) {
-        this.scoreWater = scoreWater;
-    }
-
-    public Electricity getScoreElect() {
-        return scoreElect;
-    }
-
-    public void setScoreElect(Electricity scoreElect) {
-        this.scoreElect = scoreElect;
-    }
-
-
-
 }
