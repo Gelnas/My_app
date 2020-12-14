@@ -15,10 +15,10 @@ import org.springframework.stereotype.Service;
 public class ElectricityServiсeImpl implements ElectricityServiсe {
 
     @Autowired
-    private final ElectricityRepository electricityRepository;
+    private ElectricityRepository electricityRepository;
 
     @Autowired
-    private final ElectricityMapper electricityMapper;
+    private ElectricityMapper electricityMapper;
 
     @Override
     public Electricity getById(Long id) {
@@ -27,9 +27,9 @@ public class ElectricityServiсeImpl implements ElectricityServiсe {
 
     @Override
         public void save(ElectricityDto electDto, RateDto rateDto) {
-        Electricity electricity = electricityMapper.toElectricity(electDto);
-        electricity.setScore(electDto.getCounter() * rateDto.getRateE());
-        electricityRepository.save(electricity);
+        //Electricity electricity = electricityMapper.toElectricity(electDto, rateDto);
+        //electricity.setScore(electDto.getCounter() * rateDto.getRateE());
+        electricityRepository.save(electricityMapper.toElectricity(electDto, rateDto));
 
 }
 

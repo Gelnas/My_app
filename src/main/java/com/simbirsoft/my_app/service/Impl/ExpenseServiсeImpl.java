@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ExpenseServiсeImpl implements ExpenseServiсe {
+public class  ExpenseServiсeImpl implements ExpenseServiсe {
 
     @Autowired
     private ExpenseRepository expenseRepository;

@@ -1,5 +1,7 @@
 package com.simbirsoft.my_app.dto;
 
+import lombok.Builder;
+
 public class RateDto {
 
     //тариф горячей воды

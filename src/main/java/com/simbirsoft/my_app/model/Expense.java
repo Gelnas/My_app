@@ -30,4 +30,12 @@ public class Expense {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "elect_Id", referencedColumnName = "id")
     private Electricity scoreElect;
+
+    public void setScoreWater(WaterSupply scoreWater) {
+        this.scoreWater = scoreWater;
+    }
+
+    public void setScoreElect(Electricity scoreElect) {
+        this.scoreElect = scoreElect;
+    }
 }

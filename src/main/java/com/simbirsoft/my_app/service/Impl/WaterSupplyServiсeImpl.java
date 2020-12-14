@@ -27,10 +27,10 @@ public class WaterSupplyServiсeImpl implements WaterSupplyServiсe {
     @Override
     public void save(WaterSupplyDto waterSupplyDto, RateDto rateDto) {
 
-        WaterSupply waterSupply = waterSupplyMapper.toWaterSupply(waterSupplyDto);
-        waterSupply.setScoreHot(waterSupplyDto.getCounterHot() * rateDto.getRateWH());
-        waterSupply.setScoreCold(waterSupplyDto.getCounterCold() * rateDto.getRateWC());
-        waterSupplyRepository.save(waterSupply);
+//        WaterSupply waterSupply = waterSupplyMapper.toWaterSupply(waterSupplyDto);
+//        waterSupply.setScoreHot(waterSupplyDto.getCounterHot() * rateDto.getRateWH());
+//        waterSupply.setScoreCold(waterSupplyDto.getCounterCold() * rateDto.getRateWC());
+        waterSupplyRepository.save(waterSupplyMapper.toWaterSupply(waterSupplyDto, rateDto));
     }
 
     @Override

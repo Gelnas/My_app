@@ -34,4 +34,12 @@ public class WaterSupply {
     //Чек за ХВС
     @Column(name = "scoreCold")
     private Double scoreCold;
+
+    public void setScoreHot(Double scoreHot) {
+        this.scoreHot = scoreHot;
+    }
+
+    public void setScoreCold(Double scoreCold) {
+        this.scoreCold = scoreCold;
+    }
 }

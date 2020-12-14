@@ -26,4 +26,8 @@ public class Electricity {
     //Сумма за месяц
     @Column(name = "score")
     private Double score;
+
+    public void setScore(Double score) {
+        this.score = score;
+    }
 }
