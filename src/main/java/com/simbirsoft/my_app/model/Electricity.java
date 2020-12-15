@@ -30,4 +30,12 @@ public class Electricity {
     public void setScore(Double score) {
         this.score = score;
     }
+
+    public Electricity(Long id, Calendar date, Integer counter, Double score) {
+        this.id = id;
+        this.date = date;
+        this.counter = counter;
+        this.score = score;
+    }
 }
+

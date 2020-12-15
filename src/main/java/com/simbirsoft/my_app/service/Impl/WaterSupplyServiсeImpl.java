@@ -19,6 +19,14 @@ public class WaterSupplyServiсeImpl implements WaterSupplyServiсe {
     @Autowired
     private WaterSupplyMapper waterSupplyMapper;
 
+    public WaterSupplyServiсeImpl() {
+    }
+
+    public WaterSupplyServiсeImpl(WaterSupplyRepository waterSupplyRepository, WaterSupplyMapper waterSupplyMapper) {
+        this.waterSupplyRepository = waterSupplyRepository;
+        this.waterSupplyMapper = waterSupplyMapper;
+    }
+
     @Override
     public WaterSupply getById(Long id) {
         return waterSupplyRepository.findById(id).orElse(null);
@@ -26,10 +34,6 @@ public class WaterSupplyServiсeImpl implements WaterSupplyServiсe {
 
     @Override
     public void save(WaterSupplyDto waterSupplyDto, RateDto rateDto) {
-
-//        WaterSupply waterSupply = waterSupplyMapper.toWaterSupply(waterSupplyDto);
-//        waterSupply.setScoreHot(waterSupplyDto.getCounterHot() * rateDto.getRateWH());
-//        waterSupply.setScoreCold(waterSupplyDto.getCounterCold() * rateDto.getRateWC());
         waterSupplyRepository.save(waterSupplyMapper.toWaterSupply(waterSupplyDto, rateDto));
     }
 

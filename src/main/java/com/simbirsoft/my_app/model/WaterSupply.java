@@ -42,4 +42,13 @@ public class WaterSupply {
     public void setScoreCold(Double scoreCold) {
         this.scoreCold = scoreCold;
     }
+
+    public WaterSupply(Long id, Calendar date, Integer counterHot, Integer counterCold, Double scoreHot, Double scoreCold) {
+        this.id = id;
+        this.date = date;
+        this.counterHot = counterHot;
+        this.counterCold = counterCold;
+        this.scoreHot = scoreHot;
+        this.scoreCold = scoreCold;
+    }
 }

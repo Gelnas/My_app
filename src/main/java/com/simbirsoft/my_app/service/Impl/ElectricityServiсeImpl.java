@@ -6,12 +6,12 @@ import com.simbirsoft.my_app.mapper.ElectricityMapper;
 import com.simbirsoft.my_app.model.Electricity;
 import com.simbirsoft.my_app.repository.ElectricityRepository;
 import com.simbirsoft.my_app.service.ElectricityServiсe;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class ElectricityServiсeImpl implements ElectricityServiсe {
 
     @Autowired
@@ -20,6 +20,15 @@ public class ElectricityServiсeImpl implements ElectricityServiсe {
     @Autowired
     private ElectricityMapper electricityMapper;
 
+    public ElectricityServiсeImpl(ElectricityRepository electricityRepository, ElectricityMapper electricityMapper) {
+        this.electricityRepository = electricityRepository;
+        this.electricityMapper = electricityMapper;
+    }
+
+    public ElectricityServiсeImpl() {
+
+    }
+
     @Override
     public Electricity getById(Long id) {
         return electricityRepository.findById(id).orElse(null);
@@ -27,8 +36,6 @@ public class ElectricityServiсeImpl implements ElectricityServiсe {
 
     @Override
         public void save(ElectricityDto electDto, RateDto rateDto) {
-        //Electricity electricity = electricityMapper.toElectricity(electDto, rateDto);
-        //electricity.setScore(electDto.getCounter() * rateDto.getRateE());
         electricityRepository.save(electricityMapper.toElectricity(electDto, rateDto));
 
 }

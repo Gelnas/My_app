@@ -1,5 +1,6 @@
 package com.simbirsoft.my_app.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
@@ -36,6 +37,13 @@ public class Expense {
     }
 
     public void setScoreElect(Electricity scoreElect) {
+        this.scoreElect = scoreElect;
+    }
+
+    public Expense(Long id, Calendar date, WaterSupply scoreWater, Electricity scoreElect) {
+        this.id = id;
+        this.date = date;
+        this.scoreWater = scoreWater;
         this.scoreElect = scoreElect;
     }
 }

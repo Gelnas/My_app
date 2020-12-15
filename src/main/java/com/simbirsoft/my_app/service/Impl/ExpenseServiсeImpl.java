@@ -39,4 +39,12 @@ public class  ExpenseServiсeImpl implements ExpenseServiсe {
     public void delete(Long id) {
         expenseRepository.deleteById(id);
     }
+
+    public ExpenseServiсeImpl(ExpenseRepository expenseRepository, ExpenseMapper expenseMapper) {
+        this.expenseRepository = expenseRepository;
+        this.expenseMapper = expenseMapper;
+    }
+
+    public ExpenseServiсeImpl() {
+    }
 }
