@@ -1,5 +1,6 @@
 package com.simbirsoft.my_app.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Calendar;
 @Table(name = "water_supply")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class WaterSupply {
 
     @Id
@@ -34,21 +36,4 @@ public class WaterSupply {
     //Чек за ХВС
     @Column(name = "scoreCold")
     private Double scoreCold;
-
-    public void setScoreHot(Double scoreHot) {
-        this.scoreHot = scoreHot;
-    }
-
-    public void setScoreCold(Double scoreCold) {
-        this.scoreCold = scoreCold;
-    }
-
-    public WaterSupply(Long id, Calendar date, Integer counterHot, Integer counterCold, Double scoreHot, Double scoreCold) {
-        this.id = id;
-        this.date = date;
-        this.counterHot = counterHot;
-        this.counterCold = counterCold;
-        this.scoreHot = scoreHot;
-        this.scoreCold = scoreCold;
-    }
 }

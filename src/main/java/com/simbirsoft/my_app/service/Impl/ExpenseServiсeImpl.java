@@ -7,14 +7,15 @@ import com.simbirsoft.my_app.repository.ExpenseRepository;
 import com.simbirsoft.my_app.service.ElectricityServiсe;
 import com.simbirsoft.my_app.service.ExpenseServiсe;
 import com.simbirsoft.my_app.service.WaterSupplyServiсe;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class  ExpenseServiсeImpl implements ExpenseServiсe {
 
-    @Autowired
-    private ExpenseRepository expenseRepository;
+    private final ExpenseRepository expenseRepository;
 
     @Autowired
     private ElectricityServiсe electricityServiсe;
@@ -23,7 +24,7 @@ public class  ExpenseServiсeImpl implements ExpenseServiсe {
     private WaterSupplyServiсe waterSupplyServiсe;
 
     @Autowired
-    private ExpenseMapper expenseMapper;
+    private final ExpenseMapper expenseMapper;
 
     @Override
     public Expense getById(Long id) {
@@ -40,11 +41,4 @@ public class  ExpenseServiсeImpl implements ExpenseServiсe {
         expenseRepository.deleteById(id);
     }
 
-    public ExpenseServiсeImpl(ExpenseRepository expenseRepository, ExpenseMapper expenseMapper) {
-        this.expenseRepository = expenseRepository;
-        this.expenseMapper = expenseMapper;
-    }
-
-    public ExpenseServiсeImpl() {
-    }
 }

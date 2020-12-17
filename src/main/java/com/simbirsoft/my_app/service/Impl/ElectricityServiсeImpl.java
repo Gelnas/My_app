@@ -6,28 +6,20 @@ import com.simbirsoft.my_app.mapper.ElectricityMapper;
 import com.simbirsoft.my_app.model.Electricity;
 import com.simbirsoft.my_app.repository.ElectricityRepository;
 import com.simbirsoft.my_app.service.ElectricityServiсe;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class ElectricityServiсeImpl implements ElectricityServiсe {
 
-    @Autowired
+
     private ElectricityRepository electricityRepository;
-
-    @Autowired
     private ElectricityMapper electricityMapper;
-
-    public ElectricityServiсeImpl(ElectricityRepository electricityRepository, ElectricityMapper electricityMapper) {
-        this.electricityRepository = electricityRepository;
-        this.electricityMapper = electricityMapper;
-    }
-
-    public ElectricityServiсeImpl() {
-
-    }
 
     @Override
     public Electricity getById(Long id) {

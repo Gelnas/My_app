@@ -6,11 +6,15 @@ import com.simbirsoft.my_app.mapper.WaterSupplyMapper;
 import com.simbirsoft.my_app.model.WaterSupply;
 import com.simbirsoft.my_app.repository.WaterSupplyRepository;
 import com.simbirsoft.my_app.service.WaterSupplyServiсe;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class WaterSupplyServiсeImpl implements WaterSupplyServiсe {
 
     @Autowired
@@ -18,14 +22,6 @@ public class WaterSupplyServiсeImpl implements WaterSupplyServiсe {
 
     @Autowired
     private WaterSupplyMapper waterSupplyMapper;
-
-    public WaterSupplyServiсeImpl() {
-    }
-
-    public WaterSupplyServiсeImpl(WaterSupplyRepository waterSupplyRepository, WaterSupplyMapper waterSupplyMapper) {
-        this.waterSupplyRepository = waterSupplyRepository;
-        this.waterSupplyMapper = waterSupplyMapper;
-    }
 
     @Override
     public WaterSupply getById(Long id) {

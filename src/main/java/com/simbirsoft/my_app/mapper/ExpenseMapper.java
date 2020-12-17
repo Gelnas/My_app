@@ -5,19 +5,14 @@ import com.simbirsoft.my_app.model.Expense;
 import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
-import javax.persistence.Table;
-
-@Mapper()
+@Mapper
 @DecoratedWith(ExpenseMapperDecorator.class)
-public interface ExpenseMapper {
+public interface ExpenseMapper  {
 
     ExpenseMapper INSTANCE = Mappers.getMapper(ExpenseMapper.class);
 
-    @Mappings({
-            @Mapping(target = "id", ignore = true)
-    })
+    @Mapping(target = "id", ignore = true)
     Expense toExpense(ExpenseDto expenseDto);
 }

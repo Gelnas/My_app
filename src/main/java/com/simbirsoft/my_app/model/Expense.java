@@ -12,6 +12,7 @@ import java.util.Calendar;
 @Table(name = "expense")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Expense {
 
     @Id
@@ -31,19 +32,4 @@ public class Expense {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "elect_Id", referencedColumnName = "id")
     private Electricity scoreElect;
-
-    public void setScoreWater(WaterSupply scoreWater) {
-        this.scoreWater = scoreWater;
-    }
-
-    public void setScoreElect(Electricity scoreElect) {
-        this.scoreElect = scoreElect;
-    }
-
-    public Expense(Long id, Calendar date, WaterSupply scoreWater, Electricity scoreElect) {
-        this.id = id;
-        this.date = date;
-        this.scoreWater = scoreWater;
-        this.scoreElect = scoreElect;
-    }
 }

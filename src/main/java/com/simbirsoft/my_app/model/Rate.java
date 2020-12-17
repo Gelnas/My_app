@@ -10,8 +10,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "rate")
 @Data
-//@NoArgsConstructor
-//@AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class Rate {
 
     @Id
@@ -29,15 +29,4 @@ public class Rate {
     //тарифы на электричество
     @Column(name = "rate_E")
     private Double rateE;
-
-    public Rate() {
-
-    }
-
-    public Rate(Long id, Double rateWH, Double rateWC, Double rateE) {
-        this.id = id;
-        this.rateWH = rateWH;
-        this.rateWC = rateWC;
-        this.rateE = rateE;
-    }
 }

@@ -7,10 +7,17 @@ import com.simbirsoft.my_app.repository.ElectricityRepository;
 import com.simbirsoft.my_app.service.ElectricityServiсe;
 import com.simbirsoft.my_app.service.Impl.ElectricityServiсeImpl;
 import com.simbirsoft.my_app.service.Impl.WaterSupplyServiсeImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class ExpenseMapperDecorator implements ExpenseMapper {
 
     private final ExpenseMapper expenseMapper;
+
+    @Autowired
+    private ElectricityServiсeImpl electricityServiсe;
+
+    @Autowired
+    private WaterSupplyServiсeImpl waterSupplyServiсe;
 
     ExpenseMapperDecorator (ExpenseMapper expenseMapper){
         this.expenseMapper = expenseMapper;
@@ -19,9 +26,6 @@ public abstract class ExpenseMapperDecorator implements ExpenseMapper {
     @Override
     public Expense toExpense(ExpenseDto expenseDto) {
         Expense expense = expenseMapper.toExpense(expenseDto);
-        ElectricityServiсeImpl electricityServiсe = new ElectricityServiсeImpl();
-        WaterSupplyServiсeImpl waterSupplyServiсe = new WaterSupplyServiсeImpl();
-
         expense.setScoreElect(electricityServiсe.getById(expenseDto.getElectId()));
         expense.setScoreWater(waterSupplyServiсe.getById(expenseDto.getWaterId()));
         return expense;

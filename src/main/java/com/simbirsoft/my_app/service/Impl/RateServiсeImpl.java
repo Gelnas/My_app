@@ -5,11 +5,14 @@ import com.simbirsoft.my_app.mapper.RateMapper;
 import com.simbirsoft.my_app.model.Rate;
 import com.simbirsoft.my_app.repository.RateRepository;
 import com.simbirsoft.my_app.service.RateServiсe;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class RateServiсeImpl implements RateServiсe {
 
     @Autowired
@@ -17,11 +20,6 @@ public class RateServiсeImpl implements RateServiсe {
 
     @Autowired
     private RateMapper rateMapper;
-
-    public RateServiсeImpl(RateRepository rateRepository, RateMapper rateMapper) {
-        this.rateRepository = rateRepository;
-        this.rateMapper = rateMapper;
-    }
 
     @Override
     public Rate getById(Long id) {
