@@ -8,12 +8,14 @@ import com.simbirsoft.my_app.service.ElectricityServiсe;
 import com.simbirsoft.my_app.service.ExpenseServiсe;
 import com.simbirsoft.my_app.service.WaterSupplyServiсe;
 import lombok.RequiredArgsConstructor;
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class  ExpenseServiсeImpl implements ExpenseServiсe {
+
 
     private final ExpenseRepository expenseRepository;
 
@@ -23,8 +25,8 @@ public class  ExpenseServiсeImpl implements ExpenseServiсe {
     @Autowired
     private WaterSupplyServiсe waterSupplyServiсe;
 
-    @Autowired
     private final ExpenseMapper expenseMapper;
+
 
     @Override
     public Expense getById(Long id) {
