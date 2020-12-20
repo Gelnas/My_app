@@ -8,7 +8,6 @@ import com.simbirsoft.my_app.service.ElectricityServiсe;
 import com.simbirsoft.my_app.service.ExpenseServiсe;
 import com.simbirsoft.my_app.service.WaterSupplyServiсe;
 import lombok.RequiredArgsConstructor;
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
