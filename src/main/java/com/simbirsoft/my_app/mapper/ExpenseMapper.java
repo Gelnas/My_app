@@ -1,6 +1,6 @@
 package com.simbirsoft.my_app.mapper;
 
-import com.simbirsoft.my_app.dto.ExpenseDto;
+import com.simbirsoft.my_app.dto.request.CreateExpenseRequest;
 import com.simbirsoft.my_app.model.Expense;
 import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
@@ -14,5 +14,5 @@ public interface ExpenseMapper  {
     ExpenseMapper INSTANCE = Mappers.getMapper(ExpenseMapper.class);
 
     @Mapping(target = "id", ignore = true)
-    Expense toExpense(ExpenseDto expenseDto);
+    Expense toExpense(CreateExpenseRequest createExpenseRequest);
 }

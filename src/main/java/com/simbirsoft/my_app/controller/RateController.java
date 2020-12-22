@@ -1,6 +1,7 @@
 package com.simbirsoft.my_app.controller;
 
-import com.simbirsoft.my_app.dto.RateDto;
+import com.simbirsoft.my_app.dto.request.CreateRateRequest;
+import com.simbirsoft.my_app.dto.response.RateResponse;
 import com.simbirsoft.my_app.model.Rate;
 import com.simbirsoft.my_app.service.RateServiсe;
 import io.swagger.annotations.*;
@@ -11,6 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+
 import static org.springframework.util.ObjectUtils.isEmpty;
 
 
@@ -66,17 +70,17 @@ public class RateController {
             @ApiResponse(code = 404, message = "Not found")
     })
     @PostMapping(value = "/create")
-       public ResponseEntity<String> addElectData(@ApiParam(
+       public ResponseEntity<RateResponse> addElectData(@ApiParam(
             name =  "id",
             value = "RateDto",
             required = true)
-            @RequestBody RateDto rateDto){
+            @Valid @RequestBody CreateRateRequest createRateRequest){
 
-        if(isEmpty(rateDto)){
+        if(isEmpty(createRateRequest)){
             return ResponseEntity.badRequest().build();
         }
 
-        rateServiсe.save(rateDto);
+        rateServiсe.save(createRateRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

@@ -1,6 +1,6 @@
 package com.simbirsoft.my_app.mapper;
 
-import com.simbirsoft.my_app.dto.ExpenseDto;
+import com.simbirsoft.my_app.dto.request.CreateExpenseRequest;
 import com.simbirsoft.my_app.model.Expense;
 import com.simbirsoft.my_app.service.Impl.ElectricityServiсeImpl;
 import com.simbirsoft.my_app.service.Impl.WaterSupplyServiсeImpl;
@@ -20,10 +20,10 @@ public abstract class ExpenseMapperDecorator implements ExpenseMapper {
     private WaterSupplyServiсeImpl waterSupplyServiсe;
 
     @Override
-    public Expense toExpense(ExpenseDto expenseDto) {
-        Expense expense = delegate.toExpense(expenseDto);
-        expense.setScoreElect(electricityServiсe.getById(expenseDto.getElectId()));
-        expense.setScoreWater(waterSupplyServiсe.getById(expenseDto.getWaterId()));
+    public Expense toExpense(CreateExpenseRequest createExpenseRequest) {
+        Expense expense = delegate.toExpense(createExpenseRequest);
+        expense.setScoreElect(electricityServiсe.getById(createExpenseRequest.getElectId()));
+        expense.setScoreWater(waterSupplyServiсe.getById(createExpenseRequest.getWaterId()));
         return expense;
     }
 }

@@ -1,7 +1,6 @@
 package com.simbirsoft.my_app.mapper;
 
-import com.simbirsoft.my_app.dto.RateDto;
-import com.simbirsoft.my_app.dto.WaterSupplyDto;
+import com.simbirsoft.my_app.dto.request.CreateWaterSupplyRequest;
 import com.simbirsoft.my_app.model.WaterSupply;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,10 +11,12 @@ public interface WaterSupplyMapper {
 
     @Mappings({
             @Mapping(target = "id", ignore = true),
-            @Mapping(target = "scoreHot", expression = "java(waterSupplyDto.getCounterHot() * rateDto.getRateWH())"),
-            @Mapping(target = "scoreCold", expression = "java(waterSupplyDto.getCounterCold() * rateDto.getRateWC())")
+            @Mapping(target = "scoreHot", expression = "java(createWaterSupplyRequest.getCounterHot() " +
+                    "* createWaterSupplyRequest.getRateWH())"),
+            @Mapping(target = "scoreCold", expression = "java(createWaterSupplyRequest.getCounterCold() " +
+                    "* createWaterSupplyRequest.getRateWC())")
 
     })
 
-    WaterSupply toWaterSupply(WaterSupplyDto waterSupplyDto, RateDto rateDto);
+    WaterSupply toWaterSupply(CreateWaterSupplyRequest createWaterSupplyRequest);
 }

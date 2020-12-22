@@ -1,7 +1,6 @@
 package com.simbirsoft.my_app.controller;
 
-import com.simbirsoft.my_app.dto.RateDto;
-import com.simbirsoft.my_app.dto.WaterSupplyDto;
+import com.simbirsoft.my_app.dto.request.CreateWaterSupplyRequest;
 import com.simbirsoft.my_app.model.WaterSupply;
 import com.simbirsoft.my_app.service.WaterSupplyServiсe;
 import io.swagger.annotations.*;
@@ -12,6 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+
 import static org.springframework.util.ObjectUtils.isEmpty;
 
 
@@ -65,13 +67,13 @@ public class WaterSupplyController {
             @ApiResponse(code = 404, message = "Not found")
     })
     @PostMapping(value = "/create")
-    public ResponseEntity<String> addElectData(@RequestBody WaterSupplyDto waterSupplyDto, RateDto rateDto){
+    public ResponseEntity<String> addElectData(@Valid @RequestBody CreateWaterSupplyRequest createWaterSupplyRequest){
 
-        if(isEmpty(waterSupplyDto) || isEmpty(rateDto)){
+        if(isEmpty(createWaterSupplyRequest)){
             return ResponseEntity.badRequest().build();
         }
 
-        waterSupplyServiсe.save(waterSupplyDto, rateDto);
+        waterSupplyServiсe.save(createWaterSupplyRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

@@ -1,6 +1,7 @@
 package com.simbirsoft.my_app.controller;
 
-import com.simbirsoft.my_app.dto.ExpenseDto;
+import com.simbirsoft.my_app.dto.request.CreateExpenseRequest;
+import com.simbirsoft.my_app.dto.response.ExpenseResponse;
 import com.simbirsoft.my_app.model.Expense;
 import com.simbirsoft.my_app.service.ExpenseServiсe;
 import io.swagger.annotations.*;
@@ -11,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
 
@@ -64,12 +67,12 @@ public class ExpenseController {
             @ApiResponse(code = 404, message = "Not found")
     })
     @PostMapping("/create")
-    public ResponseEntity<String> addElectData(@RequestBody ExpenseDto expenseDto){
-        if(isEmpty(expenseDto)){
+    public ResponseEntity<ExpenseResponse> addElectData(@Valid @RequestBody CreateExpenseRequest createExpenseRequest){
+        if(isEmpty(createExpenseRequest)){
             return ResponseEntity.badRequest().build();
         }
 
-        expenseService.save(expenseDto);
+        expenseService.save(createExpenseRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

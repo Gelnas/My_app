@@ -1,13 +1,9 @@
 package com.simbirsoft.my_app.service;
 
 import com.simbirsoft.my_app.mapper.ElectricityMapper;
-import com.simbirsoft.my_app.mapper.RateMapper;
 import com.simbirsoft.my_app.model.Electricity;
-import com.simbirsoft.my_app.model.Rate;
 import com.simbirsoft.my_app.repository.ElectricityRepository;
-import com.simbirsoft.my_app.repository.RateRepository;
 import com.simbirsoft.my_app.service.Impl.ElectricityServiсeImpl;
-import com.simbirsoft.my_app.service.Impl.RateServiсeImpl;
 import org.hibernate.validator.HibernateValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;

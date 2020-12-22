@@ -1,5 +1,6 @@
 package com.simbirsoft.my_app.service.Impl;
 
+import com.simbirsoft.my_app.exception.UserNotFoundException;
 import com.simbirsoft.my_app.model.Role;
 import com.simbirsoft.my_app.model.Users;
 import com.simbirsoft.my_app.repository.RoleRepository;
@@ -32,14 +33,26 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public Users getById(Long id) {
-        return userRepository.findById(id).orElse(null);
+        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
     public Users findByUsername(String username){
-        return userRepository.findByUsername(username);
+        if(isEmpty(username)){
+            throw new UserNotFoundException(username);
+        }
+        else {
+            return userRepository.findByUsername(username);
+        }
     }
 
-    public  Role findByRole(String role){return roleRepository.findByRole(role);}
+    public  Role findByRole(String role){
+        if(isEmpty(role)){
+            throw new UserNotFoundException(role);
+        }
+        else {
+            return roleRepository.findByRole(role);
+        }
+        }
 
     @Override
     @Transactional

@@ -1,12 +1,8 @@
 package com.simbirsoft.my_app.service;
 
-import com.simbirsoft.my_app.mapper.ElectricityMapper;
 import com.simbirsoft.my_app.mapper.WaterSupplyMapper;
-import com.simbirsoft.my_app.model.Electricity;
 import com.simbirsoft.my_app.model.WaterSupply;
-import com.simbirsoft.my_app.repository.ElectricityRepository;
 import com.simbirsoft.my_app.repository.WaterSupplyRepository;
-import com.simbirsoft.my_app.service.Impl.ElectricityServiсeImpl;
 import com.simbirsoft.my_app.service.Impl.WaterSupplyServiсeImpl;
 import org.hibernate.validator.HibernateValidator;
 import org.junit.jupiter.api.Assertions;

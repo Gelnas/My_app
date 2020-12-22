@@ -1,6 +1,5 @@
 package com.simbirsoft.my_app.service;
 
-import com.simbirsoft.my_app.dto.RateDto;
 import com.simbirsoft.my_app.mapper.RateMapper;
 import com.simbirsoft.my_app.model.Rate;
 import com.simbirsoft.my_app.repository.RateRepository;
