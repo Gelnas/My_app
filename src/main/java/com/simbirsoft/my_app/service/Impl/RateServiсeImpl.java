@@ -1,34 +1,37 @@
 package com.simbirsoft.my_app.service.Impl;
 
-import com.simbirsoft.my_app.dto.RateDto;
-import com.simbirsoft.my_app.mapper.RateMapper;
+import com.simbirsoft.my_app.exception.RateNotFoundException;
 import com.simbirsoft.my_app.model.Rate;
 import com.simbirsoft.my_app.repository.RateRepository;
 import com.simbirsoft.my_app.service.RateServiсe;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 @Service
+@RequiredArgsConstructor
 public class RateServiсeImpl implements RateServiсe {
 
-    @Autowired
-    private RateRepository rateRepository;
+    private final RateRepository rateRepository;
 
-    @Autowired
-    private RateMapper rateMapper;
-
+    @Transactional(readOnly = true)
     @Override
     public Rate getById(Long id) {
-        return rateRepository.findById(id).orElse(null);
+        Assert.notNull(id, "Rate id should not be null");
+        return rateRepository.findById(id).orElseThrow(() -> new RateNotFoundException(id));
     }
 
     @Override
-    public void save(RateDto rateDto) {
-        rateRepository.save(rateMapper.toRate(rateDto));
+    public Rate save(Rate rate) {
+        Assert.notNull(rate, "Rate dto should not be null");
+        return rateRepository.save(rate);
  }
 
     @Override
     public void delete(Long id) {
-        rateRepository.deleteById(id);
+        Assert.notNull(id, "Rate id should not be null");
+        Rate rate = rateRepository.findById(id).orElseThrow(() -> new RateNotFoundException(id));
+        rateRepository.delete(rate);
     }
 }

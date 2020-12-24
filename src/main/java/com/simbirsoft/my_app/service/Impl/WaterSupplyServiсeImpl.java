@@ -1,40 +1,38 @@
 package com.simbirsoft.my_app.service.Impl;
 
-import com.simbirsoft.my_app.dto.RateDto;
-import com.simbirsoft.my_app.dto.WaterSupplyDto;
-import com.simbirsoft.my_app.mapper.WaterSupplyMapper;
+import com.simbirsoft.my_app.exception.WaterSupplyNotFoundException;
 import com.simbirsoft.my_app.model.WaterSupply;
 import com.simbirsoft.my_app.repository.WaterSupplyRepository;
 import com.simbirsoft.my_app.service.WaterSupplyServiсe;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 @Service
-
+@RequiredArgsConstructor
 public class WaterSupplyServiсeImpl implements WaterSupplyServiсe {
 
-    @Autowired
-    private WaterSupplyRepository waterSupplyRepository;
 
-    @Autowired
-    private WaterSupplyMapper waterSupplyMapper;
+    private final WaterSupplyRepository waterSupplyRepository;
 
+    @Transactional(readOnly = true)
     @Override
     public WaterSupply getById(Long id) {
-        return waterSupplyRepository.findById(id).orElse(null);
+        Assert.notNull(id, "WaterSupply id should not be null");
+        return waterSupplyRepository.findById(id).orElseThrow(() -> new WaterSupplyNotFoundException(id));
     }
 
     @Override
-    public void save(WaterSupplyDto waterSupplyDto, RateDto rateDto) {
-
-        WaterSupply waterSupply = waterSupplyMapper.toWaterSupply(waterSupplyDto);
-        waterSupply.setScoreHot(waterSupplyDto.getCounterHot() * rateDto.getRateWH());
-        waterSupply.setScoreCold(waterSupplyDto.getCounterCold() * rateDto.getRateWC());
-        waterSupplyRepository.save(waterSupply);
+    public WaterSupply save(WaterSupply waterSupply) {
+        Assert.notNull(waterSupply, "WaterSupply dto should not be null");
+        return waterSupplyRepository.save(waterSupply);
     }
 
     @Override
     public void delete(Long id) {
-        waterSupplyRepository.deleteById(id);
+        Assert.notNull(id, "WaterSupply id should not be null");
+        WaterSupply waterSupply = waterSupplyRepository.findById(id).orElseThrow(() -> new WaterSupplyNotFoundException(id));
+        waterSupplyRepository.delete(waterSupply);
     }
 }

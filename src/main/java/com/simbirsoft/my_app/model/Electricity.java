@@ -10,6 +10,7 @@ import java.util.Calendar;
 @Table(name = "electricity")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Electricity {
 
     @Id
@@ -26,4 +27,6 @@ public class Electricity {
     //Сумма за месяц
     @Column(name = "score")
     private Double score;
+
 }
+

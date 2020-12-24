@@ -1,5 +1,6 @@
 package com.simbirsoft.my_app.service.Impl;
 
+import com.simbirsoft.my_app.exception.RoleNotFoundException;
 import com.simbirsoft.my_app.model.Role;
 import com.simbirsoft.my_app.repository.RoleRepository;
 import com.simbirsoft.my_app.service.RoleService;
@@ -13,6 +14,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role getById(Long id) {
-        return roleRepository.findById(id).orElse(null);
+
+        return roleRepository.findById(id).orElseThrow(() -> new RoleNotFoundException(id));
     }
 }

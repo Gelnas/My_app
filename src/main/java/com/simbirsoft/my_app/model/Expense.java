@@ -1,5 +1,6 @@
 package com.simbirsoft.my_app.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.Calendar;
 @Table(name = "expense")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Expense {
 
     @Id
