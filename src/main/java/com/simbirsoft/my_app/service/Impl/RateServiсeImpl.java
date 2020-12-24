@@ -1,28 +1,19 @@
 package com.simbirsoft.my_app.service.Impl;
 
-import com.simbirsoft.my_app.dto.request.CreateRateRequest;
 import com.simbirsoft.my_app.exception.RateNotFoundException;
-import com.simbirsoft.my_app.mapper.RateMapper;
 import com.simbirsoft.my_app.model.Rate;
 import com.simbirsoft.my_app.repository.RateRepository;
 import com.simbirsoft.my_app.service.RateServiсe;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 @Service
 @RequiredArgsConstructor
-@AllArgsConstructor
 public class RateServiсeImpl implements RateServiсe {
 
-    @Autowired
-    private RateRepository rateRepository;
-
-    @Autowired
-    private RateMapper rateMapper;
+    private final RateRepository rateRepository;
 
     @Transactional(readOnly = true)
     @Override
@@ -32,9 +23,9 @@ public class RateServiсeImpl implements RateServiсe {
     }
 
     @Override
-    public void save(CreateRateRequest createRateRequest) {
-        Assert.notNull(createRateRequest, "Rate dto should not be null");
-        rateRepository.save(rateMapper.toRate(createRateRequest));
+    public Rate save(Rate rate) {
+        Assert.notNull(rate, "Rate dto should not be null");
+        return rateRepository.save(rate);
  }
 
     @Override

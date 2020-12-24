@@ -1,6 +1,5 @@
 package com.simbirsoft.my_app.service.Impl;
 
-import com.simbirsoft.my_app.dto.request.CreateExpenseRequest;
 import com.simbirsoft.my_app.exception.ExpenseNotFoundException;
 import com.simbirsoft.my_app.mapper.ExpenseMapper;
 import com.simbirsoft.my_app.model.Expense;
@@ -37,9 +36,9 @@ public class  ExpenseServiсeImpl implements ExpenseServiсe {
     }
 
     @Override
-    public void save(CreateExpenseRequest createExpenseRequest) {
-        Assert.notNull(createExpenseRequest, "Expense dto should not be null");
-        expenseRepository.save(expenseMapper.toExpense(createExpenseRequest));
+    public Expense save(Expense expense) {
+        Assert.notNull(expense, "Expense dto should not be null");
+        return expenseRepository.save(expense);
     }
 
     @Override

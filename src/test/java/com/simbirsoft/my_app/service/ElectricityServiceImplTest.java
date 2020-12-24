@@ -45,7 +45,7 @@ public class ElectricityServiceImplTest {
         Mockito.when(electricityRepository.findById(id)).thenReturn(electricity1);
         ElectricityMapper electricityMapper = Mockito.mock(ElectricityMapper.class);
 
-        ElectricityServiсe electricityServiсe = new ElectricityServiсeImpl(electricityRepository, electricityMapper);
+        ElectricityServiсe electricityServiсe = new ElectricityServiсeImpl(electricityRepository);
         Assertions.assertEquals(electricityServiсe.getById(id), electricity1.orElse(null));
     }
 }

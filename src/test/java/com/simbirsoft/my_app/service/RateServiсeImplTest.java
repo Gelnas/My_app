@@ -42,7 +42,7 @@ public class RateServiсeImplTest {
         Mockito.when(rateRepository.findById(id)).thenReturn(rate);
         RateMapper rateMapper = Mockito.mock(RateMapper.class);
 
-        RateServiсe rateServiсe = new RateServiсeImpl(rateRepository, rateMapper);
+        RateServiсe rateServiсe = new RateServiсeImpl(rateRepository);
         Assertions.assertEquals(rateServiсe.getById(id), rate.orElse(null));
     }
 }

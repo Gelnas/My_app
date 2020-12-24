@@ -46,7 +46,7 @@ public class WaterSupplyServiсeImplTest {
         Mockito.when(waterSupplyRepository.findById(id)).thenReturn(waterSupply1);
         WaterSupplyMapper waterSupplyMapper = Mockito.mock(WaterSupplyMapper.class);
 
-        WaterSupplyServiсe waterSupplyServiсe = new WaterSupplyServiсeImpl(waterSupplyRepository, waterSupplyMapper);
+        WaterSupplyServiсe waterSupplyServiсe = new WaterSupplyServiсeImpl(waterSupplyRepository);
         Assertions.assertEquals(waterSupplyServiсe.getById(id), waterSupply1.orElse(null));
     }
 }

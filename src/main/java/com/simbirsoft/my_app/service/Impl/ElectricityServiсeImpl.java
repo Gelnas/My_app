@@ -1,8 +1,6 @@
 package com.simbirsoft.my_app.service.Impl;
 
-import com.simbirsoft.my_app.dto.request.CreateElectricityRequest;
 import com.simbirsoft.my_app.exception.ElectricityNotFoundException;
-import com.simbirsoft.my_app.mapper.ElectricityMapper;
 import com.simbirsoft.my_app.model.Electricity;
 import com.simbirsoft.my_app.repository.ElectricityRepository;
 import com.simbirsoft.my_app.service.ElectricityServiсe;
@@ -19,7 +17,7 @@ public class ElectricityServiсeImpl implements ElectricityServiсe {
 
 
     private ElectricityRepository electricityRepository;
-    private ElectricityMapper electricityMapper;
+
 
     @Transactional(readOnly = true)
     @Override
@@ -29,9 +27,9 @@ public class ElectricityServiсeImpl implements ElectricityServiсe {
     }
 
     @Override
-        public void save(CreateElectricityRequest createElectricityRequest) {
-        Assert.notNull(createElectricityRequest, "Electricity dto should not be null");
-        electricityRepository.save(electricityMapper.toElectricity(createElectricityRequest));
+        public Electricity save(Electricity electricity) {
+        Assert.notNull(electricity, "Electricity should not be null");
+        return  electricityRepository.save(electricity);
     }
 
     @Override
