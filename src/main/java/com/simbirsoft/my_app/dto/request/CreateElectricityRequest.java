@@ -18,5 +18,5 @@ public class CreateElectricityRequest {
     private final Integer counter;
 
     @NotBlank(message = "{\"field\":\"rateE\", \"message\":\"Это поле обязательно\"}")
-    private Double rateE;
+    private final Double rateE;
 }

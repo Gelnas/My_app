@@ -22,4 +22,9 @@ public interface Urls {
         String PART = "waterSupply";
         String FULL = ROOT + "/" + PART;
     }
+
+    interface Authentication{
+        String PART = "auth";
+        String FULL = ROOT + "/" + PART;
+    }
 }

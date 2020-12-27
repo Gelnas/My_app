@@ -6,42 +6,47 @@ import com.simbirsoft.my_app.model.Users;
 import com.simbirsoft.my_app.repository.RoleRepository;
 import com.simbirsoft.my_app.repository.UserRepository;
 import com.simbirsoft.my_app.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Service
-public class UserServiceImpl implements UserService, UserDetailsService {
+@RequiredArgsConstructor
+public class UserServiceImpl implements UserService /*, UserDetailsService*/ {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private RoleRepository roleRepository;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public Users getById(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
+    @Override
+    public void delete(Long id) {
+        userRepository.deleteById(id);
+    }
+
     public Users findByUsername(String username){
-        if(isEmpty(username)){
+        Users user = userRepository.findByUsername(username);
+        if(isEmpty(user)){
             throw new UserNotFoundException(username);
         }
         else {
-            return userRepository.findByUsername(username);
+            return user;
         }
     }
 
@@ -54,7 +59,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         }
 
-    @Override
+   /* @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Users user = findByUsername(username);
@@ -64,10 +69,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         return new User(user.getUsername(), user.getPassword(), mapRolesToPermission(user.getRoles()));
     }
+*/
 
 
-
-    private Collection<? extends GrantedAuthority> mapRolesToPermission(Collection<Role> roles){
+    @Override
+    public Collection<? extends GrantedAuthority> mapRolesToPermission(Collection<Role> roles){
         return roles.stream()
                 .flatMap(role -> role.getPermissions().stream())
                 .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
