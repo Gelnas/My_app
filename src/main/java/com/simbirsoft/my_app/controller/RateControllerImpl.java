@@ -23,10 +23,7 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 public class RateControllerImpl implements RateController{
 
     private final RateServiсe rateServiсe;
-
-    private  final RateMapper rateMapper;
-
-
+    private final RateMapper rateMapper;
 
     @PreAuthorize("hasAuthority('READ')")
     @Override

@@ -25,12 +25,7 @@ public interface RateController {
             @ApiResponse(code = 404, message = "Not found")
     })
     @GetMapping(value = "/{id}")
-    ResponseEntity<RateResponse> getById(@ApiParam(
-            name =  "id",
-            type = "Integer",
-            value = "Rate id",
-            example = "1",
-            required = true) @PathVariable("id") Long id);
+    ResponseEntity<RateResponse> getById(Long id);
 
 
 
