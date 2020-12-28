@@ -8,10 +8,10 @@ import com.simbirsoft.my_app.service.Impl.security.jwt.JwtTokenProvider;
 import com.simbirsoft.my_app.service.UserService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,9 +31,10 @@ public class AuthenticationRestControllerImpl implements AuthenticationRestContr
     private final UserService userService;
 
 
-    @PreAuthorize("hasAuthority('READ')")
+   // @PreAuthorize("hasAuthority('READ')")
+    @SneakyThrows
     @Override
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest request) throws AuthenticationException {
+    public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest request) {
         String username = request.getUsername();
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, request.getPassword()));
         Users user = userService.findByUsername(username);

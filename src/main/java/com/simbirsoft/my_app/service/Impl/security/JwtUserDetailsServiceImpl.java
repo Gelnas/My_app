@@ -1,7 +1,6 @@
 package com.simbirsoft.my_app.service.Impl.security;
 
 import com.simbirsoft.my_app.model.Users;
-import com.simbirsoft.my_app.service.Impl.UserServiceImpl;
 import com.simbirsoft.my_app.service.Impl.security.jwt.JwtUser;
 import com.simbirsoft.my_app.service.Impl.security.jwt.JwtUserFactory;
 import com.simbirsoft.my_app.service.UserService;

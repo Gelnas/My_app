@@ -2,6 +2,7 @@ package com.simbirsoft.my_app.service.Impl.security.jwt;
 
 
 import com.simbirsoft.my_app.exception.JwtAuthenticationException;
+import com.simbirsoft.my_app.service.Impl.security.JwtUserDetailsServiceImpl;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -10,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
@@ -29,13 +29,7 @@ public class JwtTokenProvider {
     @Value("${jwt.token.expired}")
     private long valMilliseconds;
 
-    private final UserDetailsService userDetailsService;
-
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder;
-    }
+    private final JwtUserDetailsServiceImpl userDetailsService;
 
     @PostConstruct
     protected void init() {
