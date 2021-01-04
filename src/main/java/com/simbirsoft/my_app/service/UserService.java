@@ -14,11 +14,9 @@ public interface UserService {
 
     /**
      * Method for finding a {@link Users users} by its id.
-     *
      * @param id - {@link Users users} unique identifier
      * @return {@link Users users} object with id like in arguments
      */
-
     Users getById(Long id);
 
     void delete(Long id);

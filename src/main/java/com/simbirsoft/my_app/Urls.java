@@ -11,11 +11,11 @@ public interface Urls {
         String FULL = ROOT + "/" + PART;
     }
     interface Expense{
-        String PART = "expense";
+        String PART = "expenses";
         String FULL = ROOT + "/" + PART;
     }
     interface Rate{
-        String PART = "rate";
+        String PART = "rates";
         String FULL = ROOT + "/" + PART;
     }
     interface WaterSupply{
@@ -24,7 +24,7 @@ public interface Urls {
     }
 
     interface Authentication{
-        String PART = "auth";
+        String PART = "authentication";
         String FULL = ROOT + "/" + PART;
     }
 }

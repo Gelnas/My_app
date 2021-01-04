@@ -25,7 +25,6 @@ public class RateControllerImpl implements RateController{
     private final RateServiсe rateServiсe;
     private final RateMapper rateMapper;
 
-    @PreAuthorize("hasAuthority('READ')")
     @Override
     public ResponseEntity<RateResponse> getById(@PathVariable("id") Long id) {
         if (isEmpty(id)) {
@@ -34,7 +33,6 @@ public class RateControllerImpl implements RateController{
         return ResponseEntity.ok(rateMapper.toRateResponse(rateServiсe.getById(id)));
     }
 
-    @PreAuthorize("hasAuthority('WRITE')")
     @Override
     public ResponseEntity<RateResponse> saveElectData(@Valid @RequestBody CreateRateRequest createRateRequest){
 
@@ -47,7 +45,6 @@ public class RateControllerImpl implements RateController{
                         rateServiсe.save(rateMapper.toRate(createRateRequest))));
     }
 
-    @PreAuthorize("hasAuthority('DELETE')")
     @Override
     public ResponseEntity<String> delete(@PathVariable Long id){
         if(isEmpty(id)){

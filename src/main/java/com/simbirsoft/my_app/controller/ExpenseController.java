@@ -6,6 +6,7 @@ import com.simbirsoft.my_app.model.Expense;
 import io.swagger.annotations.*;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
@@ -24,6 +25,7 @@ public interface ExpenseController {
             @ApiResponse(code = 403, message = "Forbidden. You don't have access to this data"),
             @ApiResponse(code = 404, message = "Not found")
     })
+    @PreAuthorize("hasAuthority('READ')")
     @GetMapping("/{id}")
     ResponseEntity<ExpenseResponse> getById(@ApiParam(
             name =  "id",
@@ -42,6 +44,7 @@ public interface ExpenseController {
             @ApiResponse(code = 403, message = "Forbidden. You don't have access to this data"),
             @ApiResponse(code = 404, message = "Not found")
     })
+    @PreAuthorize("hasAuthority('WRITE')")
     @PostMapping
     ResponseEntity<ExpenseResponse> saveElectData(@Valid @RequestBody CreateExpenseRequest createExpenseRequest);
 
@@ -55,6 +58,7 @@ public interface ExpenseController {
             @ApiResponse(code = 403, message = "Forbidden. You don't have access to this data"),
             @ApiResponse(code = 404, message = "Not found")
     })
+    @PreAuthorize("hasAuthority('DELETE')")
     @DeleteMapping("/{id}")
     ResponseEntity<String> delete(@ApiParam(
             name =  "id",

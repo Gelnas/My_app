@@ -1,6 +1,7 @@
 package com.simbirsoft.my_app.config;
 
 import com.simbirsoft.my_app.Urls;
+import com.simbirsoft.my_app.service.Impl.security.jwt.JwtTokenFilter;
 import com.simbirsoft.my_app.service.Impl.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @RequiredArgsConstructor
@@ -30,10 +32,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(Urls.Authentication.FULL).permitAll()
-                .antMatchers("/swagger-ui/index.html").permitAll()
+                //.antMatchers(Urls.Authentication.FULL).permitAll()
+                .antMatchers("/api/v1/authentication").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .apply(new JwtConfigurer(jwtTokenProvider));
+                .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
     }
+
+
 }

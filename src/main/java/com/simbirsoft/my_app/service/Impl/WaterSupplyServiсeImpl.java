@@ -13,7 +13,6 @@ import org.springframework.util.Assert;
 @RequiredArgsConstructor
 public class WaterSupplyServiсeImpl implements WaterSupplyServiсe {
 
-
     private final WaterSupplyRepository waterSupplyRepository;
 
     @Transactional(readOnly = true)

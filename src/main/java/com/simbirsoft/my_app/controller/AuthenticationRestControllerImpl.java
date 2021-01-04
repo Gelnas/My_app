@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,15 +22,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(Urls.Authentication.FULL)
 @RequiredArgsConstructor
 @Api(tags = "Authentication")
-public class AuthenticationRestControllerImpl implements AuthenticationRestController{
+public class AuthenticationRestControllerImpl {
 
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
     private final UserService userService;
 
-    @PreAuthorize("hasAuthority('READ')")
-    @SneakyThrows
-    @Override
+    //@SneakyThrows
+    @PostMapping
     public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest request) {
         String username = request.getUsername();
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, request.getPassword()));

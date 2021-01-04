@@ -25,9 +25,8 @@ public class ElectricityControllerImpl implements ElectricityController {
    private final ElectricityServiсe electricityServiсe;
    private final ElectricityMapper electricityMapper;
 
-   @PreAuthorize("hasAuthority('READ')")
-   @Override
-    public ResponseEntity<ElectricityResponse> getById(Long id){
+    @Override
+    public ResponseEntity<ElectricityResponse> getById(@Valid @PathVariable("id") Long id){
 
         if(isEmpty(id)){
             return ResponseEntity.badRequest().build();
@@ -36,7 +35,6 @@ public class ElectricityControllerImpl implements ElectricityController {
                 .toElectricityResponse(electricityServiсe.getById(id)));
     }
 
-    @PreAuthorize("hasAuthority('WRITE')")
     @Override
     public ResponseEntity<ElectricityResponse> saveElectData(@Valid @RequestBody CreateElectricityRequest createElectricityRequest){
         if(isEmpty(createElectricityRequest)){
@@ -49,15 +47,8 @@ public class ElectricityControllerImpl implements ElectricityController {
                                 electricityMapper.toElectricity(createElectricityRequest))));
     }
 
-    @PreAuthorize("hasAuthority('DELETE')")
     @Override
-    public ResponseEntity<String> delete(@ApiParam(
-            name =  "id",
-            type = "Integer",
-            value = "Electricity id",
-            example = "1",
-            required = true)
-            @PathVariable Long id){
+    public ResponseEntity<String> delete(@Valid @PathVariable("id") Long id){
         if(isEmpty(id)){
             return ResponseEntity.badRequest().build();
         }

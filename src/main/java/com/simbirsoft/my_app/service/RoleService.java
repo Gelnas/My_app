@@ -10,7 +10,6 @@ public interface RoleService {
 
     /**
      * Method for finding a {@link Role role} by its id.
-     *
      * @param id - {@link Role role} unique identifier
      * @return {@link Role role} object with id like in arguments
      */

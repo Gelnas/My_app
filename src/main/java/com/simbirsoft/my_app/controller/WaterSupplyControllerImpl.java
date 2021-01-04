@@ -25,8 +25,6 @@ public class WaterSupplyControllerImpl implements WaterSupplyController{
     private final WaterSupplyServiсe waterSupplyServiсe;
     private final WaterSupplyMapper waterSupplyMapper;
 
-
-    @PreAuthorize("hasAuthority('READ')")
     @Override
     public ResponseEntity<WaterSupplyResponse> getById(@PathVariable("id") Long id){
 
@@ -36,7 +34,6 @@ public class WaterSupplyControllerImpl implements WaterSupplyController{
         return ResponseEntity.ok(waterSupplyMapper.toWaterSupplyResponse(waterSupplyServiсe.getById(id)));
     }
 
-    @PreAuthorize("hasAuthority('WRTIE')")
     @Override
     public ResponseEntity<WaterSupplyResponse> saveElectData(@Valid @RequestBody CreateWaterSupplyRequest createWaterSupplyRequest){
 
@@ -50,15 +47,8 @@ public class WaterSupplyControllerImpl implements WaterSupplyController{
                                 waterSupplyMapper.toWaterSupply(createWaterSupplyRequest))));
     }
 
-    @PreAuthorize("hasAuthority('DELETE')")
     @Override
-    public ResponseEntity<String> delete(@ApiParam(
-            name =  "id",
-            type = "Integer",
-            value = "WaterSupply id",
-            example = "1",
-            required = true)
-            @PathVariable Long id){
+    public ResponseEntity<String> delete(@PathVariable Long id){
         if(isEmpty(id)){
             return ResponseEntity.badRequest().build();
         }
@@ -67,7 +57,6 @@ public class WaterSupplyControllerImpl implements WaterSupplyController{
         if(isEmpty(waterSupply)){
             return ResponseEntity.notFound().build();
         }
-
         waterSupplyServiсe.delete(id);
         return ResponseEntity.ok().build();
     }

@@ -6,6 +6,7 @@ import com.simbirsoft.my_app.model.Rate;
 import io.swagger.annotations.*;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
@@ -24,6 +25,7 @@ public interface RateController {
             @ApiResponse(code = 403, message = "Forbidden. You don't have access to this data"),
             @ApiResponse(code = 404, message = "Not found")
     })
+    @PreAuthorize("hasAuthority('READ')")
     @GetMapping(value = "/{id}")
     ResponseEntity<RateResponse> getById(Long id);
 
@@ -38,6 +40,7 @@ public interface RateController {
             @ApiResponse(code = 403, message = "Forbidden. You don't have access to this data"),
             @ApiResponse(code = 404, message = "Not found")
     })
+    @PreAuthorize("hasAuthority('WRITE')")
     @PostMapping
     ResponseEntity<RateResponse> saveElectData(@ApiParam(
             name =  "id",
@@ -55,6 +58,7 @@ public interface RateController {
             @ApiResponse(code = 403, message = "Forbidden. You don't have access to this data"),
             @ApiResponse(code = 404, message = "Not found")
     })
+    @PreAuthorize("hasAuthority('DELETE')")
     @DeleteMapping(value = "/{id}")
     ResponseEntity<String> delete(@ApiParam(
             name =  "id",

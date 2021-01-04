@@ -12,11 +12,10 @@ import org.springframework.util.Assert;
 
 @Service
 @RequiredArgsConstructor
-@AllArgsConstructor
 public class ElectricityServiсeImpl implements ElectricityServiсe {
 
 
-    private ElectricityRepository electricityRepository;
+    private final ElectricityRepository electricityRepository;
 
 
     @Transactional(readOnly = true)

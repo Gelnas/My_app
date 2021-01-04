@@ -26,7 +26,6 @@ public class ExpenseControllerImpl implements ExpenseController {
     private final ExpenseServiсe expenseService;
     private final ExpenseMapper expenseMapper;
 
-    @PreAuthorize("hasAuthority('READ')")
     @Override
     public ResponseEntity<ExpenseResponse> getById(@Valid @PathVariable("id") Long id){
 
@@ -36,8 +35,6 @@ public class ExpenseControllerImpl implements ExpenseController {
         return ResponseEntity.ok(expenseMapper.toExpenseResponse(expenseService.getById(id)));
     }
 
-
-    @PreAuthorize("hasAuthority('WRITE')")
     @Override
     public ResponseEntity<ExpenseResponse> saveElectData(@Valid @RequestBody CreateExpenseRequest createExpenseRequest){
         if(isEmpty(createExpenseRequest)){
@@ -49,16 +46,8 @@ public class ExpenseControllerImpl implements ExpenseController {
                                 expenseMapper.toExpense(createExpenseRequest))));
     }
 
-
-    @PreAuthorize("hasAuthority('DELETE')")
     @Override
-    public ResponseEntity<String> delete(@ApiParam(
-            name =  "id",
-            type = "Integer",
-            value = "Expense id",
-            example = "1",
-            required = true)
-            @PathVariable Long id){
+    public ResponseEntity<String> delete(@Valid @PathVariable("id") Long id){
         if(isEmpty(id)){
             return ResponseEntity.badRequest().build();
         }
