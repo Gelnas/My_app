@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Table(name = "rate")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Rate {
 
     @Id

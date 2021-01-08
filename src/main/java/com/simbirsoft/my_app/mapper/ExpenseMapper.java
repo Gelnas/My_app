@@ -1,21 +1,21 @@
 package com.simbirsoft.my_app.mapper;
 
-import com.simbirsoft.my_app.dto.ExpenseDto;
+import com.simbirsoft.my_app.dto.request.CreateExpenseRequest;
+import com.simbirsoft.my_app.dto.response.ExpenseResponse;
 import com.simbirsoft.my_app.model.Expense;
+import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
-
-import javax.persistence.Table;
+import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
-public interface ExpenseMapper {
+@DecoratedWith(ExpenseMapperDecorator.class)
+public interface ExpenseMapper  {
 
-    @Mappings({
-            @Mapping(target = "id", ignore = true)
+    ExpenseMapper INSTANCE = Mappers.getMapper(ExpenseMapper.class);
 
-            //@Mapping(target = "scoreWater", source = "waterId"),
-           // @Mapping(target = "scoreElect", source = "electId")
-    })
-    Expense toExpense(ExpenseDto expenseDto);
+    @Mapping(target = "id", ignore = true)
+    Expense toExpense(CreateExpenseRequest createExpenseRequest);
+
+    ExpenseResponse toExpenseResponse(Expense expense);
 }

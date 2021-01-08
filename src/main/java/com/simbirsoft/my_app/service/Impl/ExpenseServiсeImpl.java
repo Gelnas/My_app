@@ -1,20 +1,24 @@
 package com.simbirsoft.my_app.service.Impl;
 
-import com.simbirsoft.my_app.dto.ExpenseDto;
+import com.simbirsoft.my_app.exception.ExpenseNotFoundException;
 import com.simbirsoft.my_app.mapper.ExpenseMapper;
 import com.simbirsoft.my_app.model.Expense;
 import com.simbirsoft.my_app.repository.ExpenseRepository;
 import com.simbirsoft.my_app.service.ElectricityServiсe;
 import com.simbirsoft.my_app.service.ExpenseServiсe;
 import com.simbirsoft.my_app.service.WaterSupplyServiсe;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 @Service
-public class ExpenseServiсeImpl implements ExpenseServiсe {
+@RequiredArgsConstructor
+public class  ExpenseServiсeImpl implements ExpenseServiсe {
 
-    @Autowired
-    private ExpenseRepository expenseRepository;
+
+    private final ExpenseRepository expenseRepository;
 
     @Autowired
     private ElectricityServiсe electricityServiсe;
@@ -22,21 +26,26 @@ public class ExpenseServiсeImpl implements ExpenseServiсe {
     @Autowired
     private WaterSupplyServiсe waterSupplyServiсe;
 
-    @Autowired
-    private ExpenseMapper expenseMapper;
+    private final ExpenseMapper expenseMapper;
 
+    @Transactional(readOnly = true)
     @Override
     public Expense getById(Long id) {
-        return expenseRepository.findById(id).orElse(null);
+        Assert.notNull(id, "Expense id should not be null");
+        return expenseRepository.findById(id).orElseThrow(() -> new ExpenseNotFoundException(id));
     }
 
     @Override
-    public void save(ExpenseDto expenseDto) {
-        expenseRepository.save(expenseMapper.toExpense(expenseDto));
+    public Expense save(Expense expense) {
+        Assert.notNull(expense, "Expense dto should not be null");
+        return expenseRepository.save(expense);
     }
 
     @Override
     public void delete(Long id) {
-        expenseRepository.deleteById(id);
+        Assert.notNull(id, "Expense id should not be null");
+        Expense expense = expenseRepository.findById(id).orElseThrow(() -> new ExpenseNotFoundException(id));
+        expenseRepository.delete(expense);
     }
+
 }

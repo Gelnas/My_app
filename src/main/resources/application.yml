@@ -11,8 +11,17 @@ spring:
     password: 12345
 
 
+
   springfox:
     documentation:
       swagger:
         v2:
           use-model-v3: true
+
+
+
+jwt:
+  token:
+    secret: jwtappdemo
+
+
