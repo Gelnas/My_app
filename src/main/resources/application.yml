@@ -22,7 +22,6 @@ spring:
 
 jwt:
   token:
-    expired: 3600000
     secret: jwtappdemo
 
 

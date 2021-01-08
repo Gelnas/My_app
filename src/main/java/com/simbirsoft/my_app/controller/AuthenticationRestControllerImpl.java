@@ -17,17 +17,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = Urls.Authentication.FULL, method = RequestMethod.POST)
 @RequiredArgsConstructor
 @Api(tags = "Authentication")
 public class AuthenticationRestControllerImpl {
 
     private final AuthenticationManager authenticationManager;
     private final JwtTokenUtil jwtTokenUtil;
-    private JwtUserDetailsServiceImpl userDetailsService;
+    private final JwtUserDetailsServiceImpl userDetailsService;
 
-    @PostMapping
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest request) throws Exception {
+
+    @RequestMapping(value = Urls.Authentication.FULL, method = RequestMethod.POST)
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest request) throws Exception {
         authenticate(request.getUsername(), request.getPassword());
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(request.getUsername());

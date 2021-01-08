@@ -24,8 +24,7 @@ public interface Urls {
     }
 
     interface Authentication{
-        String PART = "authentication";
-        String FULL = ROOT + "/" + PART;
+        String FULL = "/authentication";
     }
     interface Swagger{
         String FULL = "/swagger-ui/index.html";

@@ -7,9 +7,9 @@ import java.io.Serializable;
 
 @Data
 @RequiredArgsConstructor
-public class AuthenticationRequest implements Serializable {
+public class AuthenticationRequest  {
 
-        private static final long serialVersionUID = 5926468583005150707L;
+        private static long serialVersionUID = 5926468583005150707L;
         private final String username;
         private final String password;
 

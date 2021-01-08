@@ -9,17 +9,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
-
 import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -31,4 +28,11 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
             return new User(user.getUsername(), user.getPassword(), new ArrayList<>());
         }
     }
+//        if (!"javainuse".equals(username)) {
+//            throw new UsernameNotFoundException("User not found with username: " + username);
+//        } else {
+//            return new User("javainuse", "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
+//                    new ArrayList<>());
+//        }
+
 }
