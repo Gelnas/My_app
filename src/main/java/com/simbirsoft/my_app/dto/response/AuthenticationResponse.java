@@ -1,10 +1,14 @@
 package com.simbirsoft.my_app.dto.response;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+import java.io.Serializable;
 
 @Data
-public class AuthenticationResponse {
+@RequiredArgsConstructor
+public class AuthenticationResponse implements Serializable {
 
-    private final String username;
-    private final String token;
+    private static final long serialVersionUID = -8091879091924046844L;
+    private final String jwttoken;
 }
